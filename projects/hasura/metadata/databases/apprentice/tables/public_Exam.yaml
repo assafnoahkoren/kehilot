@@ -1,0 +1,57 @@
+table:
+  name: Exam
+  schema: public
+array_relationships:
+  - name: Questions
+    using:
+      foreign_key_constraint_on:
+        column: exam_id
+        table:
+          name: Question
+          schema: public
+  - name: ScheduledExams
+    using:
+      foreign_key_constraint_on:
+        column: exam_id
+        table:
+          name: ScheduledExam
+          schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+        - description
+        - id
+        - name
+        - created_at
+        - updated_at
+    comment: ""
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - description
+        - id
+        - name
+        - created_at
+        - updated_at
+      filter: {}
+    comment: ""
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - description
+        - id
+        - name
+        - created_at
+        - updated_at
+      filter: {}
+      check: null
+    comment: ""
+delete_permissions:
+  - role: user
+    permission:
+      filter: {}
+    comment: ""

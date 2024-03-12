@@ -1,0 +1,71 @@
+table:
+  name: Profile
+  schema: public
+array_relationships:
+  - name: GroupMembers
+    using:
+      foreign_key_constraint_on:
+        column: profile_id
+        table:
+          name: GroupMember
+          schema: public
+  - name: OrganizationMembers
+    using:
+      foreign_key_constraint_on:
+        column: profile_id
+        table:
+          name: OrganizationMember
+          schema: public
+  - name: ScheduledExams
+    using:
+      foreign_key_constraint_on:
+        column: profile_id
+        table:
+          name: ScheduledExam
+          schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        created_at: now()
+        email: x-hasura-user-email
+        id: x-hasura-user-id
+        updated_at: now()
+      columns:
+        - email
+        - first_name
+        - last_name
+        - phone
+        - picture_url
+        - created_at
+        - updated_at
+        - id
+    comment: ""
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - email
+        - first_name
+        - last_name
+        - phone
+        - picture_url
+        - created_at
+        - updated_at
+        - id
+      filter: {}
+    comment: ""
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - first_name
+        - last_name
+        - phone
+        - picture_url
+      filter: {}
+      check: null
+      set:
+        updated_at: now()
+    comment: ""

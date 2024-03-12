@@ -1,0 +1,69 @@
+table:
+  name: Group
+  schema: public
+array_relationships:
+  - name: GroupMembers
+    using:
+      foreign_key_constraint_on:
+        column: group_id
+        table:
+          name: GroupMember
+          schema: public
+  - name: scheduledExamsByGroupId
+    using:
+      foreign_key_constraint_on:
+        column: group_id
+        table:
+          name: ScheduledExam
+          schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+        - description
+        - email
+        - id
+        - name
+        - phone
+        - picture_url
+        - website
+        - created_at
+        - updated_at
+    comment: ""
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - description
+        - email
+        - id
+        - name
+        - phone
+        - picture_url
+        - website
+        - created_at
+        - updated_at
+      filter: {}
+    comment: ""
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - description
+        - email
+        - id
+        - name
+        - phone
+        - picture_url
+        - website
+        - created_at
+        - updated_at
+      filter: {}
+      check: null
+    comment: ""
+delete_permissions:
+  - role: user
+    permission:
+      filter: {}
+    comment: ""
