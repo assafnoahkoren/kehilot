@@ -1,4 +1,4 @@
-- name: apprentice
+- name: kehilot
   kind: postgres
   configuration:
     connection_info:
@@ -6,4 +6,4 @@
         from_env: PG_URL
       isolation_level: read-committed
       use_prepared_statements: false
-  tables: "!include apprentice/tables/tables.yaml"
+  tables: "!include kehilot/tables/tables.yaml"

@@ -1,7 +1,7 @@
 {
   "projects": {
-    "default": "apprentice-app-dev",
-    "dev": "apprentice-app-dev"
+    "default": "kehilot-app",
+    "dev": "kehilot-app"
   },
   "targets": {},
   "etags": {}

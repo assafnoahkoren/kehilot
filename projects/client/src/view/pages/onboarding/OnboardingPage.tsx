@@ -34,7 +34,7 @@ export const OnboardingPage: FC = React.memo(() => {
 					onSlideChange={() => console.log('slide change')}
 				>
 					<SwiperSlide className='p-4'>
-						<span className="text-3xl font-bold">Welcome to Apprentice!</span>
+						<span className="text-3xl font-bold">Welcome to Kehilot!</span>
 						<span className="text-xl opacity-70 ">Before we start, lets get to know each other ok?</span>
 						<span className="h-8"></span>
 						<Button onClick={() => swiperRef.current?.slideNext()}>

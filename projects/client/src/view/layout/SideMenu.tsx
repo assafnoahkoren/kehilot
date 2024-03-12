@@ -45,7 +45,7 @@ export const SideMenu: FC = React.memo(() => {
 						<i className='fal fa-times'></i>
 					</div>
 					<span className='font-bold text-white'>
-						Apprentice
+					kehilot
 					</span>
 					<div className='w-[48px]'></div>
 				</ListItem>

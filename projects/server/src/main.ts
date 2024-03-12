@@ -12,7 +12,7 @@ async function bootstrap() {
 	const port = parseInt(process.env.PORT || process.env.SERVER_PORT) || 5559;
 
 	const config = new DocumentBuilder()
-		.setTitle('Apprentice')
+		.setTitle('Kehilot')
 		.setDescription('API description')
 		.setVersion('1.0')
 		.build();

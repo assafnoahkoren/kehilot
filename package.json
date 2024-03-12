@@ -1,9 +1,9 @@
 {
-	"name": "apprentice",
+	"name": "kehilot",
 	"version": "0.0.1",
 	"main": "index.js",
-	"repository": "https://github.com/AsafKaravani/apprentice.git",
-	"author": "Assaf Koren <assafnoahkoren@gmail.com>",
+	"repository": "https://github.com/AsafKaravani/kehilot.git",
+	"author": "",
 	"license": "MIT",
 	"private": true,
 	"scripts": {

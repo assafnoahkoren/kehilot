@@ -37,7 +37,7 @@ export const RegisterPage: FC = () => {
 				<div className="absolute top-0 left-0 p-4">
 					{/* <LanguagePicker /> */}
 				</div>
-				<h1 className="text-5xl font-bold mb-4">Apprentice</h1>
+				<h1 className="text-5xl font-bold mb-4">Kehilot</h1>
 				<form className="flex flex-col items-center gap-4 w-4/5" onSubmit={handleSubmit(onSubmit)}>
 					<TextField {...register('email')} placeholder={t('Email')} fullWidth />
 					<TextField {...register('password')} type="password" placeholder={t('Password')} fullWidth />
@@ -52,7 +52,7 @@ export const RegisterPage: FC = () => {
 				</Button>
 			</div>
 			<div className="mt-5 mb-60">
-				<p className="text-sm opacity-50">{t('© 2023 Apprentice. All rights reserved.')}</p>
+				<p className="text-sm opacity-50">{t('© 2023 Kehilot. All rights reserved.')}</p>
 			</div>
 		</div>
 	);

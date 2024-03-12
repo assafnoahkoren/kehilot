@@ -44,7 +44,7 @@ export const LoginPage: FC = props => {
 				<div className="absolute top-0 left-0 p-4">
 					{/* <LanguagePicker /> */}
 				</div>
-				<h1 className="text-5xl font-bold mb-4">Apprentice</h1>
+				<h1 className="text-5xl font-bold mb-4">kehilot</h1>
 				<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center gap-4 w-4/5">
 					<TextField {...register('email')} placeholder={t('Email')} fullWidth />
 					<TextField {...register('password')} type="password" placeholder={t('Password')} fullWidth />
@@ -76,7 +76,7 @@ export const LoginPage: FC = props => {
 				</Button>
 			</div>
 			<div className="mt-5 mb-60">
-				<p className="text-sm opacity-50">{t('© 2023 Apprentice. All rights reserved.')}</p>
+				<p className="text-sm opacity-50">{t('© 2023 kehilot. All rights reserved.')}</p>
 			</div>
 		</div>
 	);

@@ -1,4 +1,4 @@
-# Apprentice Client App
+# Kehilot Client App
 
 ## Tech Stack
 
