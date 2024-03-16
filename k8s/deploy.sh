@@ -54,8 +54,8 @@ kubectl -n $NAMESPACE rollout restart deploy
 
 
 
-echo "Waiting 30s for services to start..."
-for ((i=30; i>=0; i--)); do
+echo "Waiting 60s for services to start..."
+for ((i=60; i>=0; i--)); do
 	if [ $i -eq 1 ]; then
 		echo -ne "1 second left...\r"
 	else
