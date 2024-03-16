@@ -1,21 +1,17 @@
 table:
-  name: GroupMember
+  name: Profile
   schema: public
-object_relationships:
-  - name: Group
-    using:
-      foreign_key_constraint_on: group_id
-  - name: Profile
-    using:
-      foreign_key_constraint_on: profile_id
 insert_permissions:
   - role: user
     permission:
       check: {}
       columns:
-        - group_id
+        - email
+        - first_name
         - id
-        - profile_id
+        - last_name
+        - phone
+        - picture_url
         - created_at
         - updated_at
     comment: ""
@@ -23,9 +19,12 @@ select_permissions:
   - role: user
     permission:
       columns:
-        - group_id
+        - email
+        - first_name
         - id
-        - profile_id
+        - last_name
+        - phone
+        - picture_url
         - created_at
         - updated_at
       filter: {}
@@ -34,10 +33,13 @@ update_permissions:
   - role: user
     permission:
       columns:
-        - created_at
-        - group_id
+        - email
+        - first_name
         - id
-        - profile_id
+        - last_name
+        - phone
+        - picture_url
+        - created_at
         - updated_at
       filter: {}
       check: {}
