@@ -5,8 +5,8 @@ metadata:
   namespace: ${NAMESPACE}
 spec:
   ports:
-  - port: 5559  # The port the service is exposed on
-    targetPort: 5559  # The target port on the pods, should match SERVER
+  - port: ${SERVER_PORT}  # The port the service is exposed on
+    targetPort: ${SERVER_PORT}  # The target port on the pods, should match SERVER
   selector:
     app: server
 
@@ -32,7 +32,7 @@ spec:
         image: ${DOCKER_ORG}/${PROJECT_NAME}-server:${NAMESPACE}-${TAG}  # Replace with your actual image name
         imagePullPolicy: "Always"
         ports:
-        - containerPort: 3000  # The port your application listens on, adjust if different
+        - containerPort: ${SERVER_PORT}  # The port your application listens on, adjust if different
         envFrom:
         - configMapRef:
             name: ${NAMESPACE}-config

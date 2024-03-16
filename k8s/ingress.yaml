@@ -43,14 +43,4 @@ spec:
             name: server
             port:
               number: ${SERVER_PORT}
-  - host: ${NAMESPACE}.postgres.${DOMAIN}
-    http:
-      paths:
-      - path: /
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: postgres
-            port:
-              number: ${PG_PORT}
   ingressClassName: nginx

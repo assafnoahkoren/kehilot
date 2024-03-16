@@ -6,7 +6,7 @@ export const muiTheme = (dir?: Direction ) => createTheme({
 		primary: {
 			main: getComputedStyle(document.documentElement)
 				.getPropertyValue('--primary-color')
-				.trim(),
+				.trim() || '#1EA7FD',
 		},
 	},
 
