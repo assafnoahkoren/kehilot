@@ -28,32 +28,32 @@ pipeline {
 						}
 				}
 				
-        stage('Services') {
+        stage('Projects') {
             parallel {
                 stage('Server') {
                     stages {
-                        stage('Pre Build') { steps {  dir('services/server') { sh 'bash scripts/pre-build.sh' } } }
-												stage('Build') { steps {  dir('services/server') { sh 'bash scripts/build.sh' } } }
-												stage('Dockerize') { steps {  dir('services/server') { sh 'bash scripts/dockerize.sh' } } }
+                        stage('Pre Build') { steps {  dir('projects/server') { sh 'bash scripts/pre-build.sh' } } }
+												stage('Build') { steps {  dir('projects/server') { sh 'bash scripts/build.sh' } } }
+												stage('Dockerize') { steps {  dir('projects/server') { sh 'bash scripts/dockerize.sh' } } }
                     }
                 }
                 stage('Client') {
                     stages {
-                        stage('Pre Build') { steps {  dir('services/client') { sh 'bash scripts/pre-build.sh' } } }
-												stage('Build') { steps {  dir('services/client') { sh 'bash scripts/build.sh' } } }
-												stage('Dockerize') { steps {  dir('services/client') { sh 'bash scripts/dockerize.sh' } } }
+                        stage('Pre Build') { steps {  dir('projects/client') { sh 'bash scripts/pre-build.sh' } } }
+												stage('Build') { steps {  dir('projects/client') { sh 'bash scripts/build.sh' } } }
+												stage('Dockerize') { steps {  dir('projects/client') { sh 'bash scripts/dockerize.sh' } } }
                     }
                 }
 								stage('Hasura') {
                     stages {
-                        stage('Pre Build') { steps {  dir('services/hasura') { sh 'bash scripts/pre-build.sh' } } }
-												stage('Build') { steps {  dir('services/hasura') { sh 'bash scripts/build.sh' } } }
+                        stage('Pre Build') { steps {  dir('projects/hasura') { sh 'bash scripts/pre-build.sh' } } }
+												stage('Build') { steps {  dir('projects/hasura') { sh 'bash scripts/build.sh' } } }
                     }
                 }
 								stage('DB') {
                     stages {
-                        stage('Pre Build') { steps {  dir('services/db') { sh 'bash scripts/pre-build.sh' } } }
-												stage('Build') { steps {  dir('services/db') { sh 'bash scripts/build.sh' } } }
+                        stage('Pre Build') { steps {  dir('projects/db') { sh 'bash scripts/pre-build.sh' } } }
+												stage('Build') { steps {  dir('projects/db') { sh 'bash scripts/build.sh' } } }
                     }
                 }
             }
