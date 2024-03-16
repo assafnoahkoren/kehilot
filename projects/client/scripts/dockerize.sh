@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Set vite env vars
-export VITE_SERVER_ENDPOINT=http://$NAMESPACE.server.$DOMAIN
-export VITE_HASURA_GQL_ENDPOINT=http://$NAMESPACE.hasura.$DOMAIN/v1/graphql
+export VITE_SERVER_ENDPOINT=https://$NAMESPACE.server.$DOMAIN
+export VITE_HASURA_GQL_ENDPOINT=https://$NAMESPACE.hasura.$DOMAIN/v1/graphql
 
 
 # Check if the TAG environment variable is set
