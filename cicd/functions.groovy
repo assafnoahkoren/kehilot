@@ -20,14 +20,14 @@ def tagBuild() {
 
  // Function to get changed directories
 def getChangedDirs() {
-    def changedDirsOutput = sh(script: "git diff --name-only HEAD^ | grep '^services/' | cut -d'/' -f1-2 | sort -u", returnStdout: true).trim()
+    def changedDirsOutput = sh(script: "git diff --name-only HEAD^ | grep '^projects/' | cut -d'/' -f1-2 | sort -u", returnStdout: true).trim()
     return changedDirsOutput.tokenize('\n')
 }
 
 // Function to get non-changed directories
 def getNonChangedDirs() {
-    // Dynamically generate the list of all first-level directories under 'services'
-    def allDirsOutput = sh(script: "find services/ -type d -mindepth 1 -maxdepth 1 | sort -u", returnStdout: true).trim()
+    // Dynamically generate the list of all first-level directories under 'projects'
+    def allDirsOutput = sh(script: "find projects/ -type d -mindepth 1 -maxdepth 1 | sort -u", returnStdout: true).trim()
     def allDirs = allDirsOutput.tokenize('\n')
     def changedDirs = getChangedDirs()
     return allDirs - changedDirs

@@ -6,7 +6,7 @@ FROM node:20 AS build
 WORKDIR /app
 
 COPY yarn.lock ./
-COPY services/db ./
+COPY projects/db ./
 
 RUN yarn install
 
@@ -22,7 +22,7 @@ FROM node:20 AS modules
 WORKDIR /app
 
 COPY yarn.lock ./
-COPY services/server/package.json ./
+COPY projects/server/package.json ./
 
 # Install app dependencies
 RUN yarn install
@@ -34,7 +34,7 @@ FROM node:20 AS production
 
 WORKDIR /app
 
-COPY services/server ./
+COPY projects/server ./
 COPY --from=modules /app/node_modules ./node_modules
 
 ENV NODE_ENV=production
