@@ -25,10 +25,11 @@ db.$connect();
 
 
 async function clearDb() {
+	const database: any = db;
 	const allProperties = Object.keys(db)
 	const modelNames = allProperties.filter(x => {
 		if (x.toString().startsWith('$') || x.toString().startsWith('_')) return false;
-		return db[x].deleteMany as any;
+		return database[x].deleteMany as any;
 	})
 	let totalDeleted = 0;
 	let modelName: any;
