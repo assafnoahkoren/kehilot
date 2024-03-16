@@ -1,0 +1,72 @@
+pipeline {
+    agent {
+			label 'node20'
+		}
+
+    stages {
+				// Set environment variables
+				stage('Set Environment Variables') {
+						steps {
+								script {
+										// print all environment variables
+										sh 'printenv'
+										// Set environment variables
+										env.NAMESPACE = GIT_BRANCH.replace('origin/', '')
+										env.TAG = GIT_COMMIT
+
+										sh 'echo $NAMESPACE'
+										sh 'echo $TAG'
+								}
+						}
+				}
+				stage('Install Packages') {
+						steps {
+								script {
+										// Install dependencies
+										sh 'yarn install'
+								}
+						}
+				}
+				
+        stage('Services') {
+            parallel {
+                stage('Server') {
+                    stages {
+                        stage('Pre Build') { steps {  dir('services/server') { sh 'bash scripts/pre-build.sh' } } }
+												stage('Build') { steps {  dir('services/server') { sh 'bash scripts/build.sh' } } }
+												stage('Dockerize') { steps {  dir('services/server') { sh 'bash scripts/dockerize.sh' } } }
+                    }
+                }
+                stage('Client') {
+                    stages {
+                        stage('Pre Build') { steps {  dir('services/client') { sh 'bash scripts/pre-build.sh' } } }
+												stage('Build') { steps {  dir('services/client') { sh 'bash scripts/build.sh' } } }
+												stage('Dockerize') { steps {  dir('services/client') { sh 'bash scripts/dockerize.sh' } } }
+                    }
+                }
+								stage('Hasura') {
+                    stages {
+                        stage('Pre Build') { steps {  dir('services/hasura') { sh 'bash scripts/pre-build.sh' } } }
+												stage('Build') { steps {  dir('services/hasura') { sh 'bash scripts/build.sh' } } }
+                    }
+                }
+								stage('DB') {
+                    stages {
+                        stage('Pre Build') { steps {  dir('services/db') { sh 'bash scripts/pre-build.sh' } } }
+												stage('Build') { steps {  dir('services/db') { sh 'bash scripts/build.sh' } } }
+                    }
+                }
+            }
+        }
+				stage('Deploy') {
+					steps {
+							sh 'bash k8s/deploy.sh'
+					}
+				}
+				stage('E2E Tests') {
+					steps {
+						echo 'Running e2e tests...'
+					}
+				}
+    }
+}

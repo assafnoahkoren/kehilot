@@ -1,0 +1,56 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+  namespace: ${NAMESPACE}
+  annotations:
+    cert-manager.io/issuer: "letsencrypt"
+spec:
+  tls:
+  - hosts:
+    - ${NAMESPACE}.client.${DOMAIN}
+    - ${NAMESPACE}.hasura.${DOMAIN}
+    - ${NAMESPACE}.server.${DOMAIN}
+    secretName: ${NAMESPACE}-certificate
+  rules:
+  - host: ${NAMESPACE}.hasura.${DOMAIN}
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: hasura
+            port:
+              number: 80
+  - host: ${NAMESPACE}.client.${DOMAIN}
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: client
+            port:
+              number: 80
+  - host: ${NAMESPACE}.server.${DOMAIN}
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: server
+            port:
+              number: ${SERVER_PORT}
+  - host: ${NAMESPACE}.postgres.${DOMAIN}
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: postgres
+            port:
+              number: ${PG_PORT}
+  ingressClassName: nginx
