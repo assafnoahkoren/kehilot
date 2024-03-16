@@ -5,6 +5,8 @@ insert_permissions:
   - role: user
     permission:
       check: {}
+      set:
+        email: x-hasura-user-email
       columns:
         - email
         - first_name
