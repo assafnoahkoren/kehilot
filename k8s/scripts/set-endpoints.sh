@@ -1,9 +1,9 @@
 
 
 # Set endpoints for initialization
-export VITE_SERVER_ENDPOINT="http://${NAMESPACE}.server.${DOMAIN}"
-export VITE_HASURA_GQL_ENDPOINT="http://${NAMESPACE}.hasura.${DOMAIN}/v1/graphql"
-export HASURA_ENDPOINT="http://${NAMESPACE}.hasura.${DOMAIN}"
+export VITE_SERVER_ENDPOINT="https://${NAMESPACE}.server.${DOMAIN}"
+export VITE_HASURA_GQL_ENDPOINT="https://${NAMESPACE}.hasura.${DOMAIN}/v1/graphql"
+export HASURA_ENDPOINT="https://${NAMESPACE}.hasura.${DOMAIN}"
 export HASURA_GRAPHQL_DATABASE_URL="postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres.${NAMESPACE}:${PG_PORT}/${POSTGRES_DB}"
 export HASURA_METADATA_DATABASE_URL="postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres.${NAMESPACE}:${PG_PORT}/${POSTGRES_DB}"
 

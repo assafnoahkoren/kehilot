@@ -66,10 +66,10 @@ done
 source ./k8s/scripts/init-env.sh
 
 echo  "Services:"
-echo "	- hasura: http://$NAMESPACE.hasura.$DOMAIN"
-echo "	- client: http://$NAMESPACE.client.$DOMAIN"
-echo "	- server: http://$NAMESPACE.server.$DOMAIN"
-echo "	- pstgre: http://$DOMAIN:$POSTGRES_NODEPORT"
+echo "	- hasura: https://$NAMESPACE.hasura.$DOMAIN"
+echo "	- client: https://$NAMESPACE.client.$DOMAIN"
+echo "	- server: https://$NAMESPACE.server.$DOMAIN"
+echo "	- pstgre: can be accessed via proxying to the cluster"
 
 
 rm "$decoded_kube_config_path"
