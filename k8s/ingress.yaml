@@ -11,6 +11,7 @@ spec:
     - ${NAMESPACE}.client.${DOMAIN}
     - ${NAMESPACE}.hasura.${DOMAIN}
     - ${NAMESPACE}.server.${DOMAIN}
+    - ${NAMESPACE}.storybook.${DOMAIN}
     secretName: ${NAMESPACE}-certificate
   rules:
   - host: ${NAMESPACE}.hasura.${DOMAIN}
@@ -31,6 +32,16 @@ spec:
         backend:
           service:
             name: client
+            port:
+              number: 80
+  - host: ${NAMESPACE}.storybook.${DOMAIN}
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: storybook
             port:
               number: 80
   - host: ${NAMESPACE}.server.${DOMAIN}

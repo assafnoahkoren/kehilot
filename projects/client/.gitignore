@@ -25,3 +25,4 @@ dist-ssr
 
 safelist.txt
 *storybook.log
+storybook-static

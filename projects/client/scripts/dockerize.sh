@@ -17,6 +17,7 @@ yarn vite build
 SERVICE_NAME="client"
 IMAGE_NAME="$DOCKER_ORG/$PROJECT_NAME-$SERVICE_NAME"
 FULL_IMAGE_NAME="$IMAGE_NAME:$NAMESPACE-$TAG"
+FULL_STORYBOOK_IMAGE_NAME="$IMAGE_NAME-storybook:$NAMESPACE-$TAG"
 
 
 # Build the Docker image with the tag from the TAG environment variable
@@ -30,7 +31,19 @@ else
   exit 1
 fi
 
+docker build -t $FULL_STORYBOOK_IMAGE_NAME -f Dockerfile.storybook .
+# Verify the image was built
+if [ $? -eq 0 ]; then
+  echo "Docker image $FULL_STORYBOOK_IMAGE_NAME built successfully."
+else
+  echo "Failed to build Docker image."
+  exit 1
+fi
+
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
 echo "Pushing image $FULL_IMAGE_NAME to Docker Hub..."
 docker push $FULL_IMAGE_NAME
+
+echo "Pushing image $FULL_STORYBOOK_IMAGE_NAME to Docker Hub..."
+docker push $FULL_STORYBOOK_IMAGE_NAME
