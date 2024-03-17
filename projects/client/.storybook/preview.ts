@@ -8,6 +8,9 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import { withThemeFromJSXProvider } from '@storybook/addon-themes';
 import { muiTheme } from '../src/view/theme/mui-theme';
 import { RtlDecorator } from './RtlDecorator';
+import 'tailwindcss/tailwind.css';
+import '../src/assets/fontawesome/css/all.min.css';
+import '../src/assets/fontawesome/rtl.css';
 
 export const decorators = [
 	RtlDecorator,
