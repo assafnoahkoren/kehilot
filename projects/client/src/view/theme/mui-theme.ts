@@ -27,6 +27,13 @@ export const muiTheme = (dir?: Direction ) => createTheme({
 				}
 			}
 		},
+		MuiInputBase: {
+			styleOverrides: {
+				root: {
+					borderRadius: '4px'
+				}
+			}
+		},
 		MuiTextField: {
 			defaultProps: {
 				InputProps: {
