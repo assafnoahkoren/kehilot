@@ -14,7 +14,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
 	args: {
-		placeholder: 'חיפוש...',
+		placeholder: 'חיפוש',
 	},
 	argTypes: {
 
