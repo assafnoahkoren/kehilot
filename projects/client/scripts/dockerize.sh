@@ -31,6 +31,8 @@ else
   exit 1
 fi
 
+yarn build-storybook
+
 docker build -t $FULL_STORYBOOK_IMAGE_NAME -f Dockerfile.storybook .
 # Verify the image was built
 if [ $? -eq 0 ]; then
