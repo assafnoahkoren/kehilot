@@ -9,4 +9,16 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+	args: {
+		amount: 10,
+		location1: {
+			name: 'מלון- גלי כינרת',
+			amount: 150
+		},
+		location2: {
+			name: 'מלון- אחוזת אוהלו',
+			amount: 146
+		}
+	}
+};

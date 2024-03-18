@@ -1932,10 +1932,10 @@
   resolved "https://registry.yarnpkg.com/@fontsource/material-icons/-/material-icons-5.0.16.tgz#c8f503fbad15e30282e6851cc98c877e33c14a3a"
   integrity sha512-QjlHDR78ojpZfHEHJE0ltDYwyX0pWT6iMS2I9e/bJenVSktFcM+iyCHwjKmA+SDaLf5ASmx1QZNuNT4DNmsrHg==
 
-"@fontsource/roboto@^5.0.12":
-  version "5.0.12"
-  resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-5.0.12.tgz#418f7305a3be7fc567dd154db20090f7ece7fc6c"
-  integrity sha512-x0o17jvgoSSbS9OZnUX2+xJmVRvVCfeaYJjkS7w62iN7CuJWtMf5vJj8LqgC7ibqIkitOHVW+XssRjgrcHn62g==
+"@fontsource/rubik@^5.0.19":
+  version "5.0.19"
+  resolved "https://registry.yarnpkg.com/@fontsource/rubik/-/rubik-5.0.19.tgz#2cc651ed0705d8de3c11c0f9c195b9a7af67f283"
+  integrity sha512-U5vEMCMBrrXYQ+xBYE/1MbJ049lHpVfyIAc/8eMGk4PC6fkJvVMOBrfIcX05BgXogGBQ6lbxMB/8ZvihZMcefA==
 
 "@grpc/grpc-js@~1.9.0":
   version "1.9.14"

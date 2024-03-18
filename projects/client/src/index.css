@@ -22,3 +22,7 @@
 	--primary-color: #1942c9;
 	--secondary-color: #000;
 }
+
+body, * {
+  font-family: "Rubik";
+}
