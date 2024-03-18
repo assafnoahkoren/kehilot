@@ -8,7 +8,7 @@ const meta = {
 		children: { control: 'text', name: 'content' },
 	},
 
-} satisfies Meta;
+} satisfies Meta<typeof SearchBar>;
 export default meta;
 type Story = StoryObj<typeof meta>;
 

@@ -1,8 +1,0 @@
-{
-  "projects": {
-    "default": "kehilot-app",
-    "dev": "kehilot-app"
-  },
-  "targets": {},
-  "etags": {}
-}
