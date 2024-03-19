@@ -21,3 +21,62 @@ model Profile {
   created_at DateTime  @default(now())
   updated_at DateTime? @updatedAt
 }
+
+model Citizen {
+  id          String  @id @default(dbgenerated("gen_random_uuid()")) @db.Text
+  email       String  @unique
+  picture_url String?
+  first_name  String?
+  last_name   String?
+  phone       String?
+
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt
+
+  CitizenLocation       CitizenLocation[]
+  CitizenLocationChange CitizenLocationChange[]
+}
+
+model CitizenLocation {
+  id          String @id @default(dbgenerated("gen_random_uuid()")) @db.Text
+  citizen_id  String
+  location_id String
+
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt
+
+  Citizen  Citizen  @relation(fields: [citizen_id], references: [id])
+  Location Location @relation(fields: [location_id], references: [id])
+}
+
+model CitizenLocationChange {
+  id                     String   @id @default(dbgenerated("gen_random_uuid()")) @db.Text
+  previous_location_copy Json
+  previous_location_id   String
+  PreviousLocation       Location @relation(fields: [previous_location_id], references: [id])
+  new_location_copy      Json
+  new_location_id        String
+  citizen_id             String
+
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt
+
+  Citizen Citizen @relation(fields: [citizen_id], references: [id])
+}
+
+model Location {
+  id        String  @id @default(dbgenerated("gen_random_uuid()")) @db.Text
+  latitude  Float?
+  longitude Float?
+  name      String?
+  address   String?
+  city      String?
+  state     String?
+  country   String?
+
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt
+
+  CitizenLocation       CitizenLocation[]
+  CitizenLocationChange CitizenLocationChange[]
+}
