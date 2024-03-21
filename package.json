@@ -1,0 +1,40 @@
+{
+	"name": "kehilot",
+	"version": "0.0.2",
+	"main": "index.js",
+	"repository": "https://github.com/AsafKaravani/kehilot.git",
+	"author": "",
+	"license": "MIT",
+	"private": true,
+	"scripts": {
+		"lint": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
+		"prepare": "husky install",
+		"echo": "dotenv -e .env.local -- bash -c 'echo \"$FIREBASE_SERVICE_ACCOUNT_JSON_DEV\"' ",
+		"k8s-token": "kubectl create token dashboard-admin --duration=999999h --namespace kubernetes-dashboard",
+		"deploy": "dotenv -e .env.local sh ./k8s/deploy.sh",
+		"proxy": "dotenv -e .env.local sh ./scripts/proxy.sh"
+
+	},
+	"workspaces": [
+		"projects/*"
+	],
+	"devDependencies": {
+		"@stylistic/eslint-plugin-js": "^1.2.0",
+		"@typescript-eslint/eslint-plugin": "^6.11.0",
+		"@typescript-eslint/parser": "^5.0.1",
+		"eslint": "^8.7.0",
+		"eslint-plugin-prettier": "5.0.0",
+		"eslint-plugin-react-hooks": "^4.6.0",
+		"husky": "^8.0.3",
+		"lint-staged": "^15.1.0",
+		"prettier": "^3.1.0",
+		"typescript": "^4.4.4"
+	},
+	"dependencies": {
+		"dotenv-cli": "^7.3.0",
+		"eslint-config-prettier": "^9.0.0"
+	},
+	"lint-staged": {
+		"*.{js,jsx,ts,tsx}": "eslint --cache --fix"
+	}
+}

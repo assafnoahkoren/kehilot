@@ -1,0 +1,93 @@
+void setBuildStatus(String message, String state) {
+  step([
+      $class: "GitHubCommitStatusSetter",
+      reposSource: [$class: "ManuallyEnteredRepositorySource", url: "${env.GIT_URL}"],
+      contextSource: [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/build-status"],
+      errorHandlers: [[$class: "ChangingBuildStatusErrorHandler", result: "UNSTABLE"]],
+      statusResultSource: [ 
+				$class: "ConditionalStatusResultSource",
+				results: [[$class: "AnyBuildResult", message: message, state: state]]
+			]
+  ]);
+}
+
+pipeline {
+    agent {
+			label 'node20'
+		}
+
+    stages {
+				// Set environment variables
+				stage('Set Environment Variables') {
+						steps {
+								script {
+										// print all environment variables
+										sh 'printenv'
+										// Set environment variables
+										env.NAMESPACE = GIT_BRANCH.replace('origin/', '')
+										env.TAG = GIT_COMMIT
+
+										sh 'echo $NAMESPACE'
+										sh 'echo $TAG'
+								}
+						}
+				}
+				stage('Install Packages') {
+						steps {
+								script {
+										// Install dependencies
+										sh 'yarn install'
+								}
+						}
+				}
+				
+        stage('Projects') {
+            parallel {
+                stage('Server') {
+                    stages {
+                        stage('Pre Build') { steps {  dir('projects/server') { sh 'bash scripts/pre-build.sh' } } }
+												stage('Build') { steps {  dir('projects/server') { sh 'bash scripts/build.sh' } } }
+												stage('Dockerize') { steps {  dir('projects/server') { sh 'bash scripts/dockerize.sh' } } }
+                    }
+                }
+                stage('Client') {
+                    stages {
+                        stage('Pre Build') { steps {  dir('projects/client') { sh 'bash scripts/pre-build.sh' } } }
+												stage('Build') { steps {  dir('projects/client') { sh 'bash scripts/build.sh' } } }
+												stage('Dockerize') { steps {  dir('projects/client') { sh 'bash scripts/dockerize.sh' } } }
+                    }
+                }
+								stage('Hasura') {
+                    stages {
+                        stage('Pre Build') { steps {  dir('projects/hasura') { sh 'bash scripts/pre-build.sh' } } }
+												stage('Build') { steps {  dir('projects/hasura') { sh 'bash scripts/build.sh' } } }
+                    }
+                }
+								stage('DB') {
+                    stages {
+                        stage('Pre Build') { steps {  dir('projects/db') { sh 'bash scripts/pre-build.sh' } } }
+												stage('Build') { steps {  dir('projects/db') { sh 'bash scripts/build.sh' } } }
+                    }
+                }
+            }
+        }
+				stage('Deploy') {
+					steps {
+							sh 'bash k8s/deploy.sh'
+					}
+				}
+				stage('E2E Tests') {
+					steps {
+						echo 'Running e2e tests...'
+					}
+				}
+    }
+		post {
+        failure {
+            setBuildStatus("Build failed", "FAILURE");
+        }
+        success {
+            setBuildStatus("Build complete", "SUCCESS");
+        }
+    }
+}

@@ -1,0 +1,53 @@
+table:
+  name: Profile
+  schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      set:
+        email: x-hasura-user-email
+      columns:
+        - email
+        - first_name
+        - id
+        - last_name
+        - phone
+        - picture_url
+        - created_at
+        - updated_at
+    comment: ""
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - email
+        - first_name
+        - id
+        - last_name
+        - phone
+        - picture_url
+        - created_at
+        - updated_at
+      filter: {}
+    comment: ""
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - email
+        - first_name
+        - id
+        - last_name
+        - phone
+        - picture_url
+        - created_at
+        - updated_at
+      filter: {}
+      check: {}
+    comment: ""
+delete_permissions:
+  - role: user
+    permission:
+      filter: {}
+    comment: ""
