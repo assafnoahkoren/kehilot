@@ -1,11 +1,11 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import res4Section from './res-4';
+import Res4Section from './res-4';
 
 // Correcting the TypeScript definition to match the component
-const meta: Meta<typeof res4Section> = {
+const meta: Meta<typeof Res4Section> = {
 	title: 'Components/res4Section', // Reflect the component name
-	component: res4Section,
+	component: Res4Section,
 };
 
 // Correctly typing the Story object
@@ -18,15 +18,15 @@ export default meta;
 export const Default: Story = {
 	args: {
 		a1: {
-			label: " סקר פניות", // "List" in Hebrew
+			label: "  פניות", // "List" in Hebrew
 		},
 		a2: {
-			label: " קשורים תוצאות	"	},
+			label: "   סקר תוצאות"	},
 		a3: {
-			label: " כלליים אנשים" // "List" in Hebrew
+			label: "  אנשים קשורים" // "List" in Hebrew
 		},
 		a4: {
-			label: " נתונים  "// "Map" in Hebrew
+			label: "  נתונים כלליים "// "Map" in Hebrew
 		}
 	}
 };
