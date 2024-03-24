@@ -71,4 +71,4 @@ const Res4Section: React.FC<Res4> = ({
 	);
 };
 
-export default res4Section;
+export default Res4Section;
