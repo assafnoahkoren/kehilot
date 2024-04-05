@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { fakeModels } from "./fake-models";
 import { arrayOf } from "./utils";
+import { AuthService } from '../../server/src/auth/auth.service';
 
 const db = new PrismaClient();
 db.$connect();
@@ -20,6 +21,16 @@ db.$connect();
 	console.log('│   Seeding database    │');
 	console.log('└───────────────────────┘');
 
+	const authService = new AuthService();
+	db.user.createMany({
+		data: [{
+			email: 'a@a.com',
+			password: authService.hashPassword('123123'),
+		}]
+	}).then((res) => {
+		console.log('Users created:', res.count);
+	});
+	
 })();
 
 
