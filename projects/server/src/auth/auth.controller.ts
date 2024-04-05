@@ -13,12 +13,18 @@ export class LoginCredentials {
   	password: string;
 }
 
+type JwtResponse = {
+	accessToken: string;
+	// TODO: Add refresh token someday
+	// refreshToken: string;
+};
+
 @Controller('auth')
 export class AuthController {
 	constructor(private readonly authService: AuthService) {}
 
 	@Post('login-with-email')
-	async login(@Body() credentials: LoginCredentials) {
+	async login(@Body() credentials: LoginCredentials): Promise<JwtResponse>{
 
 		console.log(this.authService.hashPassword(credentials.password));
 		
