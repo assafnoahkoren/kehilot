@@ -5,6 +5,8 @@ import * as jwt from "jsonwebtoken";
 
 type JWT = {
   userId: string;
+	name: string;
+	identifier: string;
 } & ExtraFields;
 
 type ExtraFields = {

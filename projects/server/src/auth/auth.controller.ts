@@ -5,12 +5,29 @@ import { access } from 'fs';
 import { db } from 'src/db';
 
 
-export class LoginCredentials {
+class EmailLoginBody {
   @IsEmail()
   	email: string;
 
   @IsNotEmpty()
   	password: string;
+}
+
+class EmailRegisterBody {
+	@IsEmail()
+		email: string;
+
+	@IsNotEmpty()
+		password: string;
+
+	@IsNotEmpty()
+		firstName: string;
+
+	@IsNotEmpty()
+		lastName: string;
+
+	@IsNotEmpty()
+		phoneNumber: string;
 }
 
 type JwtResponse = {
@@ -24,27 +41,50 @@ export class AuthController {
 	constructor(private readonly authService: AuthService) {}
 
 	@Post('login-with-email')
-	async login(@Body() credentials: LoginCredentials): Promise<JwtResponse>{
+	async loginWithEmail(@Body() body: EmailLoginBody): Promise<JwtResponse>{
 
-		console.log(this.authService.hashPassword(credentials.password));
+		console.log(this.authService.hashPassword(body.password));
 		
 		const user = await db.user.findFirst({
 			where: {
-				email: credentials.email,
-			},
-			select: {
-				id: true,
-				password: true,
+				email: body.email,
 			}
 		});
 
 		if (!user) throw new HttpException('Not Authorized', 401);
 
-		const isPasswordCorrect = this.authService.comparePasswords(credentials.password, user.password);
+		const isPasswordCorrect = this.authService.comparePasswords(body.password, user.password);
 
 		if (!isPasswordCorrect) throw new HttpException('Not Authorized', 401);
 
-		const jwt = this.authService.createJwt({ userId: user.id });
+		const jwt = this.authService.createJwt({ 
+			userId: user.id,
+			name: `${user.first_name} ${user.last_name}`,
+			identifier: user.email
+		});
+
+		return {
+			accessToken: jwt
+		};
+	}
+
+	@Post('register-with-email')
+	async registerWithEmail(@Body() body: EmailRegisterBody): Promise<JwtResponse> {
+		const user = await db.user.create({
+			data: {
+				email: body.email,
+				password: this.authService.hashPassword(body.password),
+				first_name: body.firstName,
+				last_name: body.lastName,
+				phone: body.phoneNumber
+			}
+		});
+
+		const jwt = this.authService.createJwt({ 
+			userId: user.id,
+			name: `${user.first_name} ${user.last_name}`,
+			identifier: user.email
+		});
 
 		return {
 			accessToken: jwt
