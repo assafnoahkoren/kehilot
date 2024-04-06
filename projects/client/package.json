@@ -44,7 +44,6 @@
     "swiper": "^11.0.5",
     "tailwind-safelist-generator": "^1.0.0",
     "tailwindcss": "^3.3.5",
-    "use-http": "^1.0.28",
     "vite-plugin-package-version": "^1.1.0"
   },
   "devDependencies": {

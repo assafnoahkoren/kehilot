@@ -9,23 +9,23 @@ export const FirstLogin = React.memo(() => {
 	const navigate = useNavigate();
 	const location = useLocation();
 
-	useEffect(() => {
-		console.log('Checking if first login is required');
-		if (query_Profile.isLoading) return;
-		const noProfile = query_Profile.data?.Profile.length === 0;
-		if (noProfile) {
-			console.log('First login required');
-			navigate('/s/onboarding');
-		} else {
-			const profile = query_Profile.data?.Profile[0] || {};
-			const missingFields = profileMissingFields(profile);
-			if (missingFields.length > 0) {
-				console.log('Missing fields: ', missingFields.join(', '));
-				navigate('/s/onboarding');
-			}
-			console.log('No first login required');
-		}
-	}, [query_Profile.isLoading, query_Profile.data, location.pathname]);
+	// useEffect(() => {
+	// 	console.log('Checking if first login is required');
+	// 	if (query_Profile.isLoading) return;
+	// 	const noProfile = query_Profile.data?.Profile.length === 0;
+	// 	if (noProfile) {
+	// 		console.log('First login required');
+	// 		navigate('/s/onboarding');
+	// 	} else {
+	// 		const profile = query_Profile.data?.Profile[0] || {};
+	// 		const missingFields = profileMissingFields(profile);
+	// 		if (missingFields.length > 0) {
+	// 			console.log('Missing fields: ', missingFields.join(', '));
+	// 			navigate('/s/onboarding');
+	// 		}
+	// 		console.log('No first login required');
+	// 	}
+	// }, [query_Profile.isLoading, query_Profile.data, location.pathname]);
 
 	return <></>;
 });

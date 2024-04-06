@@ -3,10 +3,11 @@ import * as bcrypt from "bcrypt";
 import * as jwt from "jsonwebtoken";
 
 
-type JWT = {
+export type JWT = {
   userId: string;
 	name: string;
 	identifier: string;
+	iat?: number;
 } & ExtraFields;
 
 type ExtraFields = {

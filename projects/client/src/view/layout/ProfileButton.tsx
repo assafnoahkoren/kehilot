@@ -1,15 +1,14 @@
 import { Avatar, Button, Popover } from '@mui/material';
 import { FC } from 'react';
-import { useAuth, useLogout } from '../../core/firebase/firebase';
 import React from 'react';
 import { useTranslate } from '../../core/translations/useTranslate';
 import { useQuery_Profile } from '../../core/api/api';
+import { logout, useMe } from '../../core/api/hooks/auth';
 
 export const ProfileButton: FC = () => {
 	const t = useTranslate();
-	const [logout] = useLogout();
 
-	const [user] = useAuth();
+	const me = useMe();
 	
 	const query_Profile = useQuery_Profile();
 	const profile = query_Profile.data?.Profile[0];
@@ -32,13 +31,8 @@ export const ProfileButton: FC = () => {
 				className="text-white rounded-none h-full flex gap-2 items-center"
 			>
 				<Avatar className="w-7 h-7" src={profile?.picture_url} />
-				{!profile?.first_name && (
-					<span>
-						{user?.email}
-					</span>
-				)}
 				<span>
-					{profile?.first_name} {profile?.last_name}
+					{me.data?.identifier}
 				</span>
 			</Button>
 			<Popover

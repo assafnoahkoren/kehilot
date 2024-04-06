@@ -18,7 +18,6 @@ import 'swiper/css/pagination';
 const originalFetch = window.fetch;
 
 window.fetch = (...args) => {
-	console.log('fetch args = ', args);
 	const url = args[0];
 	const request = args[1];
 	const isGraphql = request?.method === 'POST' && url.toString().includes('graphql');

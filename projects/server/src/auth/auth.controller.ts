@@ -1,8 +1,10 @@
-import { Body, Controller, HttpException, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpException, Post, UseGuards } from '@nestjs/common';
 import { IsEmail, IsNotEmpty } from 'class-validator';
-import { AuthService } from './auth.service';
+import { AuthService, JWT } from './auth.service';
 import { access } from 'fs';
 import { db } from 'src/db';
+import { Requester } from './auth.decorator';
+import { JwtAuthGuard } from './auth.guard';
 
 
 class EmailLoginBody {
@@ -40,6 +42,12 @@ type JwtResponse = {
 export class AuthController {
 	constructor(private readonly authService: AuthService) {}
 
+	@Get('me')
+	@UseGuards(JwtAuthGuard)
+	async me(@Requester() user: JWT): Promise<any> {
+		return user;
+	}
+	
 	@Post('login-with-email')
 	async loginWithEmail(@Body() body: EmailLoginBody): Promise<JwtResponse>{
 

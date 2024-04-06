@@ -26,3 +26,7 @@
 body, * {
   font-family: "Rubik";
 }
+
+body, html, #root {
+	height: 100%
+}

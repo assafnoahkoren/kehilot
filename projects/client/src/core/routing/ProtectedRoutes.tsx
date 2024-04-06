@@ -7,7 +7,7 @@ import { GlobalJobs } from '../global-jobs/GlobalJobs';
 import { OnboardingPage } from '../../view/pages/onboarding/OnboardingPage';
 
 const authGuard = async () => {
-	const isAuthenticated = await checkAuth();
+	const isAuthenticated = checkAuth();
 	if (!isAuthenticated) {
 		throw redirect('/login');
 	}
@@ -15,19 +15,7 @@ const authGuard = async () => {
 	return true;
 };
 
-const checkAuth = async () => {
-	let user;
-	try {
-		user = await checkAuthStatus();
-	} catch (error) {
-		console.error(error);
-		return false;
-	}
-
-	if (!user) return false;
-
-	return true;
-};
+const checkAuth = () => !!localStorage.getItem('__JWT__');
 
 export const ProtectedRoutes: RouteObject = {
 	path: '/s',
