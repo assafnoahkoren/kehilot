@@ -4,6 +4,7 @@ type LayoutState = {
 	isMenuOpen?: boolean;
 	showProfileMenu?: boolean;
 	showMenuButton?: boolean;
+	title?: string;
 };
 const state = atom<LayoutState>({
 	key: 'baseLayoutState',
@@ -11,6 +12,7 @@ const state = atom<LayoutState>({
 		isMenuOpen: false,
 		showProfileMenu: true,
 		showMenuButton: true,
+		title: '',
 	}
 });
 

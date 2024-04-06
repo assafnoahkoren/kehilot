@@ -28,10 +28,5 @@ export const ProtectedRoutes: RouteObject = {
 		</>
 	),
 	loader: authGuard,
-	children: [
-		{ path: 'home', element: <HomePage /> },
-		{ path: 'onboarding', element: <OnboardingPage /> },
-		{ path: 'elevators', element: <>elevators</> },
-		{ path: 'add-device', element: <>add-device</> },
-	]
+	children: [{ path: 'home', element: <HomePage /> }, { path: 'onboarding', element: <OnboardingPage /> }, { path: 'cases', element: <>cases</> },]
 };

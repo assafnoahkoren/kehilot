@@ -15,6 +15,8 @@ import './core/translations/i18n';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
+import 'large-small-dynamic-viewport-units-polyfill';
+
 const originalFetch = window.fetch;
 
 window.fetch = (...args) => {
