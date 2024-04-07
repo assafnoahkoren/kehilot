@@ -5,16 +5,19 @@ import { LanguagePicker } from '../../core/translations/LanguagePicker';
 import { ProfileButton } from './ProfileButton';
 import { useRecoilState } from 'recoil';
 import { atom_layoutState } from './layout-state';
+import { useNavigate } from 'react-router-dom';
 
 export const TopBar: FC = React.memo(() => {
 	const [layoutState, setLayoutState] = useRecoilState(atom_layoutState);
-	
+	const navigate = useNavigate();
 	return (
-		<div className="min-h-12 bg-primary-color flex justify-between items-center px-2">
-			<span>
+		<div className={`min-h-16 flex justify-start gap-3 items-center px-2`} style={{backgroundColor: layoutState.topBarColor}}>
+			<div onClick={()=> navigate(-1)} className='flex justify-center items-center bg-white h-10 w-10 rounded-full'>
+				<i className='fas fa-arrow-left text-2xl text-primary-color'></i>
+			</div>
+			<h1 className='text-xl font-bold'>
 				{layoutState.title}
-			</span>
-			<ProfileButton />
+			</h1>
 		</div>
 	);
 });

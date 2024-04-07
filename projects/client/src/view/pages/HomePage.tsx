@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useLayoutEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useMe } from '../../core/api/hooks/auth';
@@ -6,11 +6,18 @@ import { Button } from '@mui/material';
 import { SearchBar } from '../components/search-bar/search-bar';
 import Lottie from 'react-lottie-player'
 import lottieJson from '../../assets/home-page-animation.json'
+import { atom_layoutState } from '../layout/layout-state';
+import { useRecoilState } from 'recoil';
 
 export const HomePage: FC = () => {
 	const query_me = useMe();
 	const navigate = useNavigate();
+	const [layoutState, setLayoutState] = useRecoilState(atom_layoutState);
 
+	useLayoutEffect(() => {
+		setLayoutState({topBarVisible: false, title: '', backgroundColor: 'blur'})
+	}, []);
+	
 	return <div className='flex flex-col justify-between h-full '>
 		<div className='p-4'>
 			<h1 className='text-2xl font-bold mb-0'>
@@ -22,7 +29,7 @@ export const HomePage: FC = () => {
 		</div>
 		
 		<div className='relative'>
-			<div className='absolute -top-[120%] flex justify-center w-full'>
+			<div className='absolute -top-[20rem] flex justify-center w-full'>
 				<Lottie
 					className='relative top-[5rem]'
 					loop

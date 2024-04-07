@@ -5,6 +5,9 @@ import { Shell } from '../../view/layout/Shell';
 import { checkAuthStatus } from '../firebase/firebase';
 import { GlobalJobs } from '../global-jobs/GlobalJobs';
 import { OnboardingPage } from '../../view/pages/onboarding/OnboardingPage';
+import { PersonalAreaPage } from '../../view/pages/personal-area/PersonalAreaPage';
+import { CasesPage } from '../../view/pages/cases/CasesPage';
+import { MapPage } from '../../view/pages/map/MapPage';
 
 const authGuard = async () => {
 	const isAuthenticated = checkAuth();
@@ -28,5 +31,11 @@ export const ProtectedRoutes: RouteObject = {
 		</>
 	),
 	loader: authGuard,
-	children: [{ path: 'home', element: <HomePage /> }, { path: 'onboarding', element: <OnboardingPage /> }, { path: 'cases', element: <>cases</> },]
+	children: [
+		{ path: 'home', element: <HomePage /> },
+		{ path: 'onboarding', element: <OnboardingPage /> },
+		{ path: 'cases', element: <CasesPage /> },
+		{ path: 'personal', element: <PersonalAreaPage /> },
+		{ path: 'map', element: <MapPage />}
+	]
 };

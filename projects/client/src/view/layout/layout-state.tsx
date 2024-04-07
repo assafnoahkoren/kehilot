@@ -7,6 +7,7 @@ type LayoutState = {
 	title?: string;
 	topBarColor?: string;
 	topBarVisible?: boolean;
+	backgroundColor?: string;
 };
 const state = atom<LayoutState>({
 	key: 'baseLayoutState',
@@ -17,6 +18,7 @@ const state = atom<LayoutState>({
 		title: 'asasd',
 		topBarColor: 'primary',
 		topBarVisible: false,
+		backgroundColor: '#f9f9f9',
 	}
 });
 
