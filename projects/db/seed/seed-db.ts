@@ -25,6 +25,9 @@ db.$connect();
 	db.user.createMany({
 		data: [{
 			email: 'a@a.com',
+			first_name: 'אסף',
+			last_name: 'קורן',
+			phone: '0522717039',
 			password: authService.hashPassword('123123'),
 		}]
 	}).then((res) => {
