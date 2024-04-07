@@ -1,5 +1,4 @@
 import React, { FC, useEffect } from 'react';
-import { useAuth } from '../firebase/firebase';
 import { Profile, useQuery_Profile } from '../api/api';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ModelTypes } from '../../generated/zeus';

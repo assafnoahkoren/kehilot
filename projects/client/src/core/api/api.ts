@@ -1,7 +1,6 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { chain, scalars } from '../../generated/zeus/chain';
 import { ModelTypes } from '../../generated/zeus';
-import { useAuth } from '../firebase/firebase';
 import toast from 'react-hot-toast';
 import { useRef } from 'react';
 import { queryClient } from './query-client';
@@ -12,15 +11,13 @@ import { useAppMutation } from './hooks';
 export type Profile = DeepPartial<ModelTypes['Profile']>;
 
 export const useQuery_Profile = () => {
-	const [user] = useAuth();
 	return useQuery({
-		enabled: !!user?.email,
 		queryKey: ['profile'],
 		queryFn: () =>
 			chain('query', { scalars })({
 				Profile: [{
 					where: {
-						email: { _eq: user!.email }
+						email: { _eq: '' }
 					}
 				}, {
 					id: true,
@@ -42,7 +39,6 @@ export const useQuery_ProfileId = () => {
 };
 
 export const useMutation_CreateProfile = () => {
-	const [user] = useAuth();
 	return useMutation({
 		mutationFn: (profile: DeepPartial<ModelTypes['Profile']>) => {
 			return chain('mutation', { scalars })({
@@ -62,7 +58,6 @@ export const useMutation_CreateProfile = () => {
 };
 
 export const useMutation_UpdateProfile = () => {
-	const [user] = useAuth();
 	const toastIdRef = useRef<string>();
 	return useMutation({
 		mutationFn: (profile: DeepPartial<ModelTypes['Profile']>) => {
@@ -70,7 +65,7 @@ export const useMutation_UpdateProfile = () => {
 			return chain('mutation', { scalars })({
 				update_Profile: [{
 					where: {
-						email: { _eq: user!.email }
+						email: { _eq: '' }
 					},
 					_set: {
 						...profile

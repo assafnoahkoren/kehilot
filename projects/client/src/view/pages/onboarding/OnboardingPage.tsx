@@ -6,7 +6,6 @@ import { Pagination } from 'swiper/modules';
 import './styles.css';
 import { Button } from '@mui/material';
 import { Swiper as SwiperType } from 'swiper/types';
-import { ProfileForm } from './ProfileForm';
 import { useNavigate } from 'react-router-dom';
 import { useDevice } from '../../layout/useDevice';
 import { useRecoilState } from 'recoil';
@@ -44,7 +43,6 @@ export const OnboardingPage: FC = React.memo(() => {
 
 					</SwiperSlide>
 					<SwiperSlide>
-						<ProfileForm onSubmitSuccess={() => swiperRef.current?.slideNext()} />
 
 					</SwiperSlide>
 					<SwiperSlide>

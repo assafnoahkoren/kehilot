@@ -1,7 +1,6 @@
 import { Button, CircularProgress, TextField } from '@mui/material';
 import { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSignInGoogle, useSignInPassword } from '../../core/firebase/firebase';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useTranslate } from '../../core/translations/useTranslate';
 import { LanguagePicker } from '../../core/translations/LanguagePicker';

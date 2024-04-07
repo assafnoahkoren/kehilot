@@ -2,7 +2,6 @@ import { RouteObject } from 'react-router-dom';
 import { Outlet, redirect } from 'react-router-dom';
 import { HomePage } from '../../view/pages/HomePage';
 import { Shell } from '../../view/layout/Shell';
-import { checkAuthStatus } from '../firebase/firebase';
 import { GlobalJobs } from '../global-jobs/GlobalJobs';
 import { OnboardingPage } from '../../view/pages/onboarding/OnboardingPage';
 import { PersonalAreaPage } from '../../view/pages/personal-area/PersonalAreaPage';

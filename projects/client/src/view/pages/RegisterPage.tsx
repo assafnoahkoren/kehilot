@@ -2,7 +2,6 @@ import { Button, CircularProgress, TextField } from '@mui/material';
 import { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useCreateUser } from '../../core/firebase/firebase';
 import { LanguagePicker } from '../../core/translations/LanguagePicker';
 import { useTranslate } from '../../core/translations/useTranslate';
 
@@ -15,21 +14,14 @@ type RegisterFormFields = {
 export const RegisterPage: FC = () => {
 	const t = useTranslate();
 	const navigate = useNavigate();
-	const [createUserWithEmailAndPassword, user, loading] = useCreateUser();
-
 	const { register, handleSubmit } = useForm<RegisterFormFields>();
 	const onSubmit: SubmitHandler<RegisterFormFields> = form => {
 		if (form.password !== form.password2) {
 			return;
 		}
-		createUserWithEmailAndPassword(form.email, form.password);
 	};
 
-	useEffect(() => {
-		if (user) {
-			navigate('/login');
-		}
-	}, [user, navigate]);
+
 
 	return (
 		<div className="flex flex-col justify-center items-center bg-slate-200 h-full pt-14">
@@ -42,10 +34,10 @@ export const RegisterPage: FC = () => {
 					<TextField {...register('email')} placeholder={t('Email')} fullWidth />
 					<TextField {...register('password')} type="password" placeholder={t('Password')} fullWidth />
 					<TextField {...register('password2')} type="password" placeholder={t('Verify password')} fullWidth />
-					<Button type="submit" className="px-10" disabled={loading}>
+					<Button type="submit" className="px-10" disabled={false}>
 						{t('Register')}
 					</Button>
-					{loading && <CircularProgress color="inherit" size={24} />}
+					{false && <CircularProgress color="inherit" size={24} />}
 				</form>
 				<Button onClick={() => navigate('/login')} variant="text" color="inherit" className="text-slate-400 w-4/5">
 					{t('I already have an account')}
