@@ -26,18 +26,22 @@ export const Shell: FC<CompProps> = props => {
 			
 			<SideMenu />
 			<div className="flex flex-col flex-1 z-10">
-				{layoutState.topBarVisible && <TopBar />}
-				<div className='fixed top-0 w-full z-30'>
+				<span className="opacity-0">
+					{layoutState.topBarVisible && <TopBar />}
+				</span>
+				<div className="fixed top-0 w-full z-30">
 					{layoutState.topBarVisible && <TopBar />}
 				</div>
 				<div className="flex-1">{props.children}</div>
-				<BottomNav />
-				<div className='fixed bottom-0 w-full'>
+				<span className="opacity-0">
+					<BottomNav />
+				</span>
+				<div className="fixed bottom-0 w-full">
 					<BottomNav />
 				</div>
 			</div>
 		</div>
-	);
+);
 };
 
 const BottomNav: FC = () => {
