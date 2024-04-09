@@ -38,3 +38,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 		<App />
 	</React.StrictMode>
 );
+
+declare global {
+	interface Window {
+		__JWT__: string;
+	}
+}
