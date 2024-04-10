@@ -43,5 +43,5 @@ yarn prisma migrate deploy
 yarn ts-node seed/seed-db.ts
 
 # Run Hasura metadata apply
-cd $ROOT_DIR/projects/client
-source ./scripts/apply.sh
+# cd $ROOT_DIR/projects/client
+# source ./scripts/apply.sh

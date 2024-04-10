@@ -1,21 +1,19 @@
 version: '1.0'
 
 services:
-  postgres:
-    image: postgres:15-alpine
-    ports:
-      - 5432:5432
+  mssql:
+    container_name: mssql-db
+    hostname: mssql-db
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: 'Y'
+      MSSQL_SA_PASSWORD: 'Passw0rd'
+      MSSQL_DATA_DIR: /var/opt/mssql/data
+      MSSQL_PID: 'Developer' 
+      MSSQL_TCP_PORT: 1433 
+    ports: 
+      - "1433:1433"
     volumes:
-      - ~/apps/postgres:/var/lib/postgresql/data
-    env_file:
-      - .env.local
-
-  graphql-engine:
-    image: hasura/graphql-engine:v2.37.0
-    restart: always
-    ports:
-      - 8080:8080
-    env_file:
-      - .env.local
-    depends_on:
-      - postgres
+      - ~/apps/sqlserver/data:/var/opt/mssql/data
+      - ~/apps/sqlserver/log:/var/opt/mssql/log
+      - ~/apps/sqlserver/secrets:/var/opt/mssql/secrets
