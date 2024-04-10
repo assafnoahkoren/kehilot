@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { Issue, PrismaClient } from "@prisma/client";
 import { fakeModels } from "./fake-models";
 import { arrayOf } from "./utils";
 import { AuthService } from '../../server/src/auth/auth.service';
@@ -32,6 +32,23 @@ db.$connect();
 		}]
 	}).then((res) => {
 		console.log('Users created:', res.count);
+	});
+
+	const subjects = arrayOf(10,fakeModels.subject);
+	db.subject.createMany({
+		data: subjects
+	}).then((res) => {
+		console.log('Subjects created:', res.count);
+	});
+
+	const issues: Issue[] = []
+	subjects.forEach(subject => issues.push(fakeModels.issue(subject.id)));
+	console.log(issues);
+	
+	db.issue.createMany({
+		data: issues
+	}).then((res) => {
+		console.log('Issues created:', res.count);
 	});
 	
 })();

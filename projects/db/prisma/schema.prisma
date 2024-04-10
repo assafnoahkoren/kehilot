@@ -23,7 +23,6 @@ model User {
   updated_at DateTime? @updatedAt
 
   AuthChallenge AuthChallenge[]
-  Issue         Issue[]
 }
 
 model AuthChallenge {
@@ -60,6 +59,4 @@ model Issue {
 
   created_at DateTime  @default(now())
   updated_at DateTime? @updatedAt
-  User       User?     @relation(fields: [userId], references: [id])
-  userId     String?
 }
