@@ -23,6 +23,7 @@ model User {
   updated_at DateTime? @updatedAt
 
   AuthChallenge AuthChallenge[]
+  Issue         Issue[]
 }
 
 model AuthChallenge {
@@ -34,4 +35,31 @@ model AuthChallenge {
 
   created_at DateTime  @default(now())
   updated_at DateTime? @updatedAt
+}
+
+model Subject {
+  id     String  @id @default(uuid())
+  name   String
+  gov_id String?
+  phone  String?
+
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt
+
+  Issue Issue[]
+}
+
+model Issue {
+  id         String  @id @default(uuid())
+  subject_id String
+  subject    Subject @relation(fields: [subject_id], references: [id])
+  title      String?
+  content    String?
+  status     String? @default("open")
+  priority   String? @default("normal")
+
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt
+  User       User?     @relation(fields: [userId], references: [id])
+  userId     String?
 }
