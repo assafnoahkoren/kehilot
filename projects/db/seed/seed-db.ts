@@ -43,7 +43,6 @@ db.$connect();
 
 	const issues: Issue[] = []
 	subjects.forEach(subject => issues.push(fakeModels.issue(subject.id)));
-	console.log(issues);
 	
 	db.issue.createMany({
 		data: issues
