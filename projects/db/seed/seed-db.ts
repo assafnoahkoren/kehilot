@@ -1,7 +1,8 @@
-import { Issue, PrismaClient } from "@prisma/client";
+import { Issue, Note, PrismaClient } from "@prisma/client";
 import { fakeModels } from "./fake-models";
 import { arrayOf } from "./utils";
 import { AuthService } from '../../server/src/auth/auth.service';
+import { randUuid } from "@ngneat/falso";
 
 const db = new PrismaClient();
 db.$connect();
@@ -21,9 +22,14 @@ db.$connect();
 	console.log('│   Seeding database    │');
 	console.log('└───────────────────────┘');
 
+	// ===========================================================================
+	// Creating Users
+	// ===========================================================================
 	const authService = new AuthService();
+	const userId = randUuid();
 	db.user.createMany({
 		data: [{
+			id: userId,
 			email: 'a@a.com',
 			first_name: 'אסף',
 			last_name: 'קורן',
@@ -34,22 +40,71 @@ db.$connect();
 		console.log('Users created:', res.count);
 	});
 
+	// ===========================================================================
+	//  Creating Subjects
+	// ===========================================================================
 	const subjects = arrayOf(10,fakeModels.subject);
-	db.subject.createMany({
+	const subjectsRes = await db.subject.createMany({
 		data: subjects
-	}).then((res) => {
-		console.log('Subjects created:', res.count);
 	});
+	console.log('Subjects created:', subjectsRes.count);
 
+	// ===========================================================================
+	// Creating Issues for each subject
+	// ===========================================================================
 	const issues: Issue[] = []
 	subjects.forEach(subject => issues.push(fakeModels.issue(subject.id)));
 	
-	db.issue.createMany({
+	const issuesRes = await db.issue.createMany({
 		data: issues
-	}).then((res) => {
-		console.log('Issues created:', res.count);
 	});
-	
+	console.log('Issues created:', issuesRes.count);
+
+	// ===========================================================================
+	// Create Notes for each Issue
+	// ===========================================================================
+	const notes: Note[] = [];
+	issues.forEach(issue => {
+		const amountOfNotes = Math.floor(Math.random() * 10);
+		for (let i = 0; i < amountOfNotes; i++) {
+			notes.push(fakeModels.note(userId, issue.id, 'issue'))
+		}
+	});
+
+	const notesRes = await db.note.createMany({
+		data: notes
+	});
+	console.log('Notes created:', notesRes.count);
+
+	// ===========================================================================
+	// Create A Group and a GroupUserRole
+	// ===========================================================================
+	const groupId = randUuid();
+	const res = await db.group.create({
+		data: {
+			id: groupId,
+			name: 'יישוב דפנה',
+			sql_where: '1 = 1',
+			created_at: new Date(),
+			updated_at: new Date(),
+		}
+	})
+	console.log('Group created:', 1);
+
+	db.groupUserRole.create({
+		data: {
+			user_id: userId,
+			group_id: groupId,
+			role: 'manager',
+			created_at: new Date(),
+			updated_at: new Date(),
+		}
+	}).then((res) => {
+		console.log('GroupUserRole created:', 1);
+	});
+
+
+
 })();
 
 
