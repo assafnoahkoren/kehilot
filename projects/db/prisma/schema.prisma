@@ -1,5 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// You can see a diagram of the models at:
+// 🌍 https://kehilot.atlassian.net/wiki/spaces/Kehilot/pages/13697025/DB+Models
 
 generator client {
   provider = "prisma-client-js"
@@ -23,6 +23,8 @@ model User {
   updated_at DateTime? @updatedAt
 
   AuthChallenge AuthChallenge[]
+  GroupUserRole GroupUserRole[]
+  Note          Note[]
 }
 
 model AuthChallenge {
@@ -37,10 +39,21 @@ model AuthChallenge {
 }
 
 model Subject {
-  id     String  @id @default(uuid())
-  name   String
-  gov_id String?
-  phone  String?
+  id            String    @id @default(uuid())
+  gov_id        String?
+  phone         String?
+  first_name    String?
+  middle_name   String?
+  last_name     String?
+  date_of_birth DateTime?
+  mother_name   String?
+  father_name   String?
+  sex           String?
+
+  street      String?
+  city        String?
+  postal_code String?
+  country     String?
 
   created_at DateTime  @default(now())
   updated_at DateTime? @updatedAt
@@ -48,9 +61,48 @@ model Subject {
   Issue Issue[]
 }
 
+model Group {
+  id String @id @default(uuid())
+
+  name      String // Group name for example: "Dafna"
+  sql_where String? // SQL where clause to filter the group members
+
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt
+
+  GroupUserRole GroupUserRole[]
+}
+
+model GroupUserRole {
+  id String @id @default(uuid())
+
+  group_id String // Group that the user has a role in
+  group    Group  @relation(fields: [group_id], references: [id], onDelete: Cascade)
+
+  user_id String // User who has a role in the group
+  User    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  role String // admin, manager, viewer
+
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt
+}
+
+model Note {
+  id          String  @id @default(uuid())
+  user_id     String // User who created the note
+  user        User    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  entity_id   String
+  entity_type String // User, Subject, Issue
+  content     String?
+
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt
+}
+
 model Issue {
   id         String  @id @default(uuid())
-  subject_id String
+  subject_id String // Subject who the issue is about
   subject    Subject @relation(fields: [subject_id], references: [id], onDelete: Cascade)
   title      String?
   content    String?
