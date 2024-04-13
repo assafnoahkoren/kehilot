@@ -34,7 +34,21 @@
 		"**/.hg": true,
 		"**/CVS": true,
 		"**/.DS_Store": true,
-		"**/Thumbs.db": true
+		"**/Thumbs.db": true,
+		"[!p]*/**": true,
+		"p[!r]*/**": true,
+		"pr[!o]*/**": true,
+		"pro[!j]*/**": true,
+		"proj[!e]*/**": true,
+		"proje[!c]*/**": true,
+		"projec[!t]*/**": true,
+		"project[!s]*/**": true,
+		"projects/[!s]*/**": true,
+		"projects/s[!e]*/**": true,
+		"projects/se[!r]*/**": true,
+		"projects/ser[!v]*/**": true,
+		"projects/serv[!e]*/**": true,
+		"projects/serve[!r]*/**": true
 	},
 	"[jsonc]": {
 		"editor.defaultFormatter": "vscode.json-language-features"

@@ -4,6 +4,6 @@ import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
 	controllers: [SubjectController],
-	imports: [AuthModule]
+	imports: [AuthModule],
 })
 export class SubjectModule {}
