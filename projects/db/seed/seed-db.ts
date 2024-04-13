@@ -15,7 +15,7 @@ db.$connect();
 	console.log('└───────────────────────┘');
 	
 	const totalDeleted = await clearDb();
-	console.log('Total deleted:', totalDeleted);
+	console.log('Total deleted:', totalDeleted, '(This may be lower than expected due to foreign key constraints)');
 	
 	
 	console.log('┌───────────────────────┐');
