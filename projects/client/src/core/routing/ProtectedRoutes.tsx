@@ -5,8 +5,10 @@ import { Shell } from '../../view/layout/Shell';
 import { GlobalJobs } from '../global-jobs/GlobalJobs';
 import { OnboardingPage } from '../../view/pages/onboarding/OnboardingPage';
 import { PersonalAreaPage } from '../../view/pages/personal-area/PersonalAreaPage';
-import { IssuesPage } from '../../view/pages/cases/IssuesPage';
+import { IssuesPage } from '../../view/pages/issues/IssuesPage';
 import { MapPage } from '../../view/pages/map/MapPage';
+import { IssueDetailsPage } from '../../view/pages/issues/IssueDetailsPage';
+import { SubjectDetailsPage } from '../../view/pages/subject/SubjectDetailsPage';
 
 const authGuard = async () => {
 	const isAuthenticated = checkAuth();
@@ -33,7 +35,9 @@ export const ProtectedRoutes: RouteObject = {
 	children: [
 		{ path: 'home', element: <HomePage /> },
 		{ path: 'onboarding', element: <OnboardingPage /> },
-		{ path: 'cases', element: <IssuesPage /> },
+		{ path: 'issues', element: <IssuesPage /> },
+		{ path: 'issues/details/:id', element: <IssueDetailsPage /> },
+		{ path: 'subjects/details/:id', element: <SubjectDetailsPage /> },
 		{ path: 'personal', element: <PersonalAreaPage /> },
 		{ path: 'map', element: <MapPage />}
 	]

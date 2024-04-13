@@ -41,7 +41,7 @@ export const Shell: FC<CompProps> = props => {
 				</div>
 			</div>
 		</div>
-);
+	);
 };
 
 const BottomNav: FC = () => {
@@ -67,7 +67,7 @@ const BottomNav: FC = () => {
 		>
 			<BottomNavigationAction value="/s/home" label="בית" icon={<i className="fas fa-home text-xl h-6"></i>} />
 			<BottomNavigationAction value="/s/map" label="מיקום" icon={<i className="fas fa-map-marker-alt text-xl h-6"></i>} />
-			<BottomNavigationAction value="/s/cases" label="פניות" icon={<span className='-scale-x-100 flex'><i className="fas fa-comment-question text-xl h-6"></i></span>} />
+			<BottomNavigationAction value="/s/issues" label="פניות" icon={<span className='-scale-x-100 flex'><i className="fas fa-comment-question text-xl h-6"></i></span>} />
 			<BottomNavigationAction value="/s/personal" label="אזור אישי" icon={<i className="fas fa-circle-user text-xl h-6"></i>} />
 		</BottomNavigation>
 	)

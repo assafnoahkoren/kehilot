@@ -52,7 +52,7 @@ export const HomePage: FC = () => {
 
 							סקרים
 						</Button>
-						<Button onClick={() => navigate('/s/cases')} className='flex flex-col flex-1 rounded-xl text-2xl'>
+						<Button onClick={() => navigate('/s/issues')} className='flex flex-col flex-1 rounded-xl text-2xl'>
 							<div className='absolute start-0 top-3 bg-yellow-500 text-black text-xl px-4 rounded-e-full'>{query_CountMyIssues.data?.count ?? '?'}</div>
 							<svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path fillRule="evenodd" clipRule="evenodd" d="M22.3699 4.03894C26.8287 3.68927 31.2739 5.73321 34.6916 8.61479C37.9035 11.3229 39.3459 15.4381 40.6308 19.4355C41.7935 23.0529 42.3711 26.8004 41.7412 30.5471C41.1214 34.234 39.6107 37.7419 37.0888 40.5043C34.6048 43.2253 31.0772 44.4277 27.7069 45.92C23.8196 47.6413 20.0616 50.5693 15.862 49.9032C11.5517 49.2195 8.05691 45.903 5.46907 42.3928C2.99545 39.0375 2.51266 34.822 1.72677 30.7298C0.901932 26.4348 -1.08924 21.8719 0.767538 17.9113C2.62217 13.9552 7.55329 12.8169 11.232 10.4545C14.9115 8.09169 18.009 4.38094 22.3699 4.03894Z" fill="#CDFDD7"/>
