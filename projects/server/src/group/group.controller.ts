@@ -60,7 +60,7 @@ export async function getUserOwnedGroups(userId: string) {
 		}
 	})
 
-	return res.GroupUserRole.map((gur) => gur.group);
+	return res?.GroupUserRole.map((gur) => gur.group) || [];
 }
 
 function containsDeletionKeywords(text: string): boolean {

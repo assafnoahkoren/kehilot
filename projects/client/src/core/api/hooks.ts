@@ -11,7 +11,7 @@ type AppMutationOptions = {
 }
 type useMutationOptions<T, TError = DefaultError, TVariables = void, TContext = unknown> = UseMutationOptions<T, TError, TVariables, TContext> & AppMutationOptions;
 
-export const useAppMutation = <T, TError = DefaultError, TVariables = void, TContext = unknown>(options: useMutationOptions<T, TError, TVariables, TContext> , queryClient: QueryClient) => {
+export const useAppMutation = <T, TError = DefaultError, TVariables = void, TContext = unknown>(options: useMutationOptions<T, TError, TVariables, TContext> , queryClient?: QueryClient) => {
 	const toastIdRef = useRef<string>();
 
 	const originMutationFn = options.mutationFn!;

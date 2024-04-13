@@ -11,6 +11,11 @@ export class IssueController {
 	async getMyIssuesCount(@Request() req) {
 		const userId = req.user.userId;
 		const groups = await getUserOwnedGroups(userId);
+		if (groups.length == 0) {
+			return {
+				count: 0
+			}
+		}
 		const where_clasue = groups.map(group => `(${group.sql_where})`).join(' OR ');
 		const result = await db.$queryRawUnsafe(`SELECT COUNT (*) FROM issue WHERE ${where_clasue}`);
 		return {
@@ -24,8 +29,35 @@ export class IssueController {
 		const userId = req.user.userId;
 		const groups = await getUserOwnedGroups(userId);
 		const where_clasue = groups.map(group => `(${group.sql_where})`).join(' OR ');
-		const result = await db.$queryRawUnsafe(`SELECT * FROM issue WHERE ${where_clasue}`);
-		return result;
+		const issues = await db.$queryRawUnsafe<{id: string}[]>(`SELECT id FROM issue WHERE ${where_clasue}`);
+		return db.issue.findMany({
+			where: {
+				id: {
+					in: issues.map(issue => issue.id)
+				}
+			},
+			select: {
+				id: true,
+				title: true,
+				content: true,
+				created_at: true,
+				updated_at: true,
+				priority: true,
+				status: true,
+				subject: {
+					select: {
+						id: true,
+						first_name: true,
+						middle_name: true,
+						last_name: true,
+						gov_id: true,
+						phone: true,
+
+					}
+				}
+			}
+			
+		});
 	}
 
 	// TODO: update issue

@@ -5,7 +5,7 @@ import { Shell } from '../../view/layout/Shell';
 import { GlobalJobs } from '../global-jobs/GlobalJobs';
 import { OnboardingPage } from '../../view/pages/onboarding/OnboardingPage';
 import { PersonalAreaPage } from '../../view/pages/personal-area/PersonalAreaPage';
-import { CasesPage } from '../../view/pages/cases/CasesPage';
+import { IssuesPage } from '../../view/pages/cases/IssuesPage';
 import { MapPage } from '../../view/pages/map/MapPage';
 
 const authGuard = async () => {
@@ -33,7 +33,7 @@ export const ProtectedRoutes: RouteObject = {
 	children: [
 		{ path: 'home', element: <HomePage /> },
 		{ path: 'onboarding', element: <OnboardingPage /> },
-		{ path: 'cases', element: <CasesPage /> },
+		{ path: 'cases', element: <IssuesPage /> },
 		{ path: 'personal', element: <PersonalAreaPage /> },
 		{ path: 'map', element: <MapPage />}
 	]

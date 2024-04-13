@@ -8,11 +8,13 @@ import Lottie from 'react-lottie-player'
 import lottieJson from '../../assets/home-page-animation.json'
 import { atom_layoutState } from '../layout/layout-state';
 import { useRecoilState } from 'recoil';
+import { useCountMyIssues } from '../../core/api/hooks/issues';
 
 export const HomePage: FC = () => {
 	const query_me = useMe();
 	const navigate = useNavigate();
 	const [layoutState, setLayoutState] = useRecoilState(atom_layoutState);
+	const query_CountMyIssues = useCountMyIssues();
 
 	useLayoutEffect(() => {
 		setLayoutState({topBarVisible: false, title: '', backgroundColor: 'blur'})
@@ -51,7 +53,7 @@ export const HomePage: FC = () => {
 							סקרים
 						</Button>
 						<Button onClick={() => navigate('/s/cases')} className='flex flex-col flex-1 rounded-xl text-2xl'>
-							<div className='absolute start-0 top-3 bg-yellow-500 text-black text-xl px-4 rounded-e-full'>{0}</div>
+							<div className='absolute start-0 top-3 bg-yellow-500 text-black text-xl px-4 rounded-e-full'>{query_CountMyIssues.data?.count ?? '?'}</div>
 							<svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path fillRule="evenodd" clipRule="evenodd" d="M22.3699 4.03894C26.8287 3.68927 31.2739 5.73321 34.6916 8.61479C37.9035 11.3229 39.3459 15.4381 40.6308 19.4355C41.7935 23.0529 42.3711 26.8004 41.7412 30.5471C41.1214 34.234 39.6107 37.7419 37.0888 40.5043C34.6048 43.2253 31.0772 44.4277 27.7069 45.92C23.8196 47.6413 20.0616 50.5693 15.862 49.9032C11.5517 49.2195 8.05691 45.903 5.46907 42.3928C2.99545 39.0375 2.51266 34.822 1.72677 30.7298C0.901932 26.4348 -1.08924 21.8719 0.767538 17.9113C2.62217 13.9552 7.55329 12.8169 11.232 10.4545C14.9115 8.09169 18.009 4.38094 22.3699 4.03894Z" fill="#CDFDD7"/>
 								<path d="M28.2514 21.375C28.2514 25.7933 24.6697 29.375 20.2514 29.375C15.8331 29.375 12.2514 25.7933 12.2514 21.375C12.2514 16.9567 15.8331 13.375 20.2514 13.375C24.6697 13.375 28.2514 16.9567 28.2514 21.375ZM3.2514 43.875C3.2514 42.746 3.80901 41.6831 4.89733 40.6787C5.99244 39.668 7.55696 38.7854 9.37046 38.0589C12.9991 36.6053 17.3727 35.875 20.2514 35.875C23.1301 35.875 27.5037 36.6053 31.1323 38.0589C32.9459 38.7854 34.5104 39.668 35.6055 40.6787C36.6938 41.6831 37.2514 42.746 37.2514 43.875V47.375H3.2514V43.875ZM35.206 25.6038C36.7299 22.9589 36.7299 19.7686 35.206 17.1237L37.6537 14.6615C40.9504 18.8762 40.9245 24.227 37.6827 28.0952L35.206 25.6038ZM42.8438 33.3957C48.5895 26.1729 48.6183 16.2785 42.859 9.33914L45.1312 7.0669C52.6354 15.5263 52.6024 27.5707 45.1443 35.6962L42.8438 33.3957Z" fill="white" stroke="#4E5461" strokeWidth="2"/>
