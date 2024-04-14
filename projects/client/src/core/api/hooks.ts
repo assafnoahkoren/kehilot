@@ -21,7 +21,7 @@ export const useAppMutation = <T, TError = DefaultError, TVariables = void, TCon
 		return originMutationFn(variables);
 	}
 
-	const originOnSettled = options.onSettled!;
+	const originOnSettled = options.onSettled ?? (() => {});
 	options.onSettled = (data: any, error: any, variables, context) => {
 		error && console.error(error);
 		if (error == 'Another mutation is in progress') return new Promise(() => {});

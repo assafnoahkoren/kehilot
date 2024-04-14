@@ -52,6 +52,9 @@ export class NotesController {
 						phone: true,
 					}
 				}
+			},
+			orderBy: {
+				created_at: 'desc'
 			}
 		});
 			

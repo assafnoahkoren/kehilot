@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { appFetch } from '../app-fetch';
 import { useAppMutation } from '../hooks.ts';
 
@@ -12,7 +12,9 @@ export const useNotes = (entityId: string) => {
 	});
 };
 
-export const useCreateNote = () => {
+export const useCreateNote = (entityId: string) => {
+	const queryClient = useQueryClient();
+
 	return useAppMutation({
 		mutationFn: (body: {content: string, entityType: string, entityId: string}) => {
 			return appFetch('/api/v1/notes', {
@@ -21,8 +23,12 @@ export const useCreateNote = () => {
 			})
 		},
 		toast: {
-			onSuccess: 'הערה נוצרה בהצלחה',
-			onError: 'אירעה שגיאה ביצירת הערה'
+			success: 'הערה נוצרה בהצלחה',
+			error: 'אירעה שגיאה ביצירת הערה',
+			loading: 'יוצר הערה...'
+		},
+		onSuccess: () => {
+			queryClient.invalidateQueries(`notes-${entityId}` as any);
 		}
 	})
 }

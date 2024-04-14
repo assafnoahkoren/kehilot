@@ -50,9 +50,9 @@ export const IssueDetailsPage: FC = () => {
 				{issue?.content}
 			</div>
 
-			<span className="text-xl font-bold mb-4">הערות</span>
-			<div className="w-full mb-20">
-				<NotesFeed entityId={id}/>
+			<div className="text-xl font-bold mb-4">הערות</div>
+			<div className="w-full mb-14">
+				<NotesFeed entityId={id ?? ''}/>
 			</div>
 		</div>
 	);
