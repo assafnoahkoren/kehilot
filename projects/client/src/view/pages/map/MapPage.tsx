@@ -17,7 +17,7 @@ export const MapPage: FC = () => {
 	}, []);
 
 	const query_MyIssues = useMyIssues();
-	const addresses = query_MyIssues.data?.map(issue => `${issue.subject.city}, ${issue.subject.street}, ${issue.subject.country}`) || [];
+	const addresses = (query_MyIssues.data?.map && query_MyIssues.data?.map(issue => `${issue.subject.city}, ${issue.subject.street}, ${issue.subject.country}`)) || [];
 
 	const query_Locations = useAddressesToGeoLocations(addresses);
 	const points = query_Locations.data?.map(res => res.features[0]?.geometry?.coordinates || []);
@@ -32,7 +32,7 @@ export const MapPage: FC = () => {
 				/>
 				{points?.map((point, index) => (
 					<>
-						{point?.length && <Marker position={{
+						{point?.length && <Marker key={index} position={{
 							lat: point[1],
 							lng: point[0]
 						}}>

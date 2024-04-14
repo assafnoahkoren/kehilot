@@ -25,6 +25,7 @@
     "@tanstack/react-query-devtools": "^5.17.10",
     "ag-grid-react": "^31.0.1",
     "country-code-lookup": "^0.1.0",
+    "csv-parser": "^3.0.0",
     "firebase": "^10.6.0",
     "graphql-zeus": "^5.3.3",
     "hasura-cli": "^2.36.1",

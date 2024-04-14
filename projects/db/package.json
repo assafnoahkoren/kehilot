@@ -9,7 +9,8 @@
 		"deploy": "dotenv -e ../../.env.local prisma migrate deploy",
 		"generate": "dotenv -e ../../.env.local prisma generate",
 		"studio": "dotenv -e ../../.env.local prisma studio",
-		"seed": "dotenv -e ../../.env.local ts-node seed/seed-db.ts"
+		"seed": "dotenv -e ../../.env.local ts-node seed/seed-db.ts",
+		"load": "dotenv -e ../../.env.local ts-node seed/load-db.ts"
 	},
 	"devDependencies": {
 		"@types/node": "18.15.11",
