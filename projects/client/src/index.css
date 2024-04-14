@@ -32,3 +32,7 @@ body, html, #root {
 	height: calc(var(--1dvh, 1vh) * 100); /* This is the "polyfill" */
 	height: 100dvh; /* This is for future browsers that support svh, dvh and lvh viewport units */
 }
+
+.leaflet-control-attribution {
+	display: none;
+}

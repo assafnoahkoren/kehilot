@@ -52,7 +52,9 @@ export class IssueController {
 						last_name: true,
 						gov_id: true,
 						phone: true,
-
+						street: true,
+						city: true,
+						country: true,
 					}
 				}
 			}

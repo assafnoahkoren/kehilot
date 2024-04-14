@@ -17,6 +17,9 @@ import 'swiper/css/pagination';
 
 import 'large-small-dynamic-viewport-units-polyfill';
 
+import 'leaflet/dist/leaflet.css';
+
+
 const originalFetch = window.fetch;
 
 window.fetch = (...args) => {

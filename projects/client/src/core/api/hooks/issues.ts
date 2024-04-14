@@ -33,6 +33,9 @@ type MyIssuesResponse = {
 		last_name: string;
 		gov_id: string;
 		phone: string;
+		street: string;
+		city: string;
+		country: string;
 	};
 };
 
