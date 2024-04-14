@@ -28,7 +28,7 @@ export const IssueDetailsPage: FC = () => {
 					</span>
 				</div>
 				{issue?.created_at && <span className="px-4">{new Date(issue.created_at).toLocaleDateString()}</span>}
-				<Link underline="none" className="px-4" onClick={() => navigate(`/s/subjects/details/${issue?.subject.id}`)}>
+				<Link underline="none" className="px-4 w-max" onClick={() => navigate(`/s/subjects/details/${issue?.subject.id}`)}>
 					{issue?.subject.first_name} {issue?.subject.middle_name} {issue?.subject.last_name}
 				</Link>
 				<div dir="ltr" className="flex justify-between px-4">
