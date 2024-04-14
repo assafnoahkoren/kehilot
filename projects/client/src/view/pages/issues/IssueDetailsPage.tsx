@@ -5,6 +5,7 @@ import { SearchBar } from "../../components/search-bar/search-bar";
 import { Chip, Grow, Link, Tab, Tabs } from "@mui/material";
 import { useMyIssues } from "../../../core/api/hooks/issues";
 import { useNavigate, useParams } from "react-router-dom";
+import { NotesFeed } from '../../components/notes-feed/notes-feed';
 
 export const IssueDetailsPage: FC = () => {
 	const [layoutState, setLayoutState] = useRecoilState(atom_layoutState);
@@ -12,6 +13,7 @@ export const IssueDetailsPage: FC = () => {
 	const { id } = useParams<{ id: string }>();
 	const query_MyIssues = useMyIssues();
 	const issue = query_MyIssues.data?.find(issue => issue.id === id);
+
 	
 
 	useLayoutEffect(() => {
@@ -19,7 +21,7 @@ export const IssueDetailsPage: FC = () => {
 	}, []);
 
 	return ( 
-		<div className="p-4">
+		<div className="p-4 bg-[#f9f9f9]">
 			<div className="flex flex-col gap-1 mb-4 bg-white w-full rounded-xl shadow py-4">
 				<div className="flex justify-between px-4">
 					<span className="flex gap-2">
@@ -41,11 +43,16 @@ export const IssueDetailsPage: FC = () => {
 						</span> */}
 			</div>
 
-			<div>
+			<div className="mb-10">
 				<h2 className="text-2xl mb-4">
 					{issue?.title}
 				</h2>
 				{issue?.content}
+			</div>
+
+			<span className="text-xl font-bold mb-4">הערות</span>
+			<div className="w-full mb-20">
+				<NotesFeed entityId={id}/>
 			</div>
 		</div>
 	);

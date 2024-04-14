@@ -28,6 +28,7 @@ export class NotesController {
 				entity_id: body.entityId,
 				entity_type: body.entityType,
 				content: body.content,
+
 			}
 		});
 
@@ -42,6 +43,16 @@ export class NotesController {
 			where: {
 				entity_id: entityId
 			},
+			include: {
+				user: {
+					select: {
+						id: true,
+						first_name: true,
+						last_name: true,
+						phone: true,
+					}
+				}
+			}
 		});
 			
 	}
