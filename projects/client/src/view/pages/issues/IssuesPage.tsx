@@ -5,6 +5,7 @@ import { SearchBar } from "../../components/search-bar/search-bar";
 import { Chip, Grow, Link, Tab, Tabs } from "@mui/material";
 import { useMyIssues } from "../../../core/api/hooks/issues";
 import { useNavigate } from "react-router-dom";
+import { Tag } from '../../components/tag/tag.tsx';
 
 export const IssuesPage: FC = () => {
 	const [layoutState, setLayoutState] = useRecoilState(atom_layoutState);
@@ -40,8 +41,8 @@ export const IssuesPage: FC = () => {
 					<div className="flex flex-col gap-1 mb-4 bg-white w-full rounded-xl shadow py-4" onClick={() => navigate(`/s/issues/details/${issue.id}`)}>
 						<div className="flex justify-between px-4">
 							<span className="flex gap-2">
-								<Chip className="font-bold" label={issue.priority} size="small" color="error" variant="outlined" />
-								<Chip className="font-bold" label={issue.status} size="small" color="error" variant="outlined" />
+								<Tag className="font-bold" label={issue.priority} size="small" color="error" variant="outlined" />
+								<Tag className="font-bold" label={issue.status} size="small" color="error" variant="outlined" />
 							</span>
 							<Link underline="none" onClick={() => navigate(`/s/issues/details/${issue.id}`)}>
 								לצפייה

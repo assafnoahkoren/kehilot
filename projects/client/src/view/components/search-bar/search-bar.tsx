@@ -15,7 +15,7 @@ export const SearchBar: FC<SearchBarProps> = props => {
 				InputProps={{
 					sx: { border: 'none'},
 					disableUnderline: true,
-					inputProps: {className: 'placeholder-blue-500'}
+					inputProps: {className: 'placeholder-blue-500 text-[18px]'}
 				}} {...props}/>
 		</div>
 	);
