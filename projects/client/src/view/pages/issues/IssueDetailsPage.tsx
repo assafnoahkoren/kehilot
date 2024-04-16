@@ -47,7 +47,9 @@ export const IssueDetailsPage: FC = () => {
 				<h2 className="text-2xl mb-4">
 					{issue?.title}
 				</h2>
-				{issue?.content}
+				<div className="bg-white p-4">
+					{issue?.content}
+				</div>
 			</div>
 
 			<div className="text-xl font-bold mb-4">הערות</div>
