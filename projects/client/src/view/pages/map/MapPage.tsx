@@ -26,7 +26,7 @@ export const MapPage: FC = () => {
 
 	return (
 		<div className="h-full">
-			<MapContainer center={[31.788170, 34.629790]} zoom={13} style={{width: '100%', height: '100%'}} >
+			<MapContainer center={[31.788170, 34.629790]} zoom={8} style={{width: '100%', height: '100%'}} >
 				<TileLayer
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				/>
