@@ -47,10 +47,10 @@ export const NotesFeed: FC<NotesFeedProps> = (props) => {
 				</Grow>
 			))}
 			<form onSubmit={createNote} className="fixed flex gap-2 bottom-[64px] py-3 start-0 px-4 w-full" style={{background: 'linear-gradient(to top, #00000010, transparent)'}}>
+				<TextField value={noteText} placeholder='הוספת הערה' className="rounded-full flex-1 overflow-hidden" fullWidth inputProps={{style: {background: 'white'}}} onChange={(e) => setNoteText(e.target.value)}  />
 				<Button type='submit' className="rounded-full overflow-hidden min-w-0 w-[43px]" variant="contained" color="primary" onClick={createNote}>
 					<i className="fas fa-paper-plane" />
 				</Button>
-				<TextField value={noteText} placeholder='הוסף הערה' className="rounded-full flex-1 overflow-hidden" fullWidth inputProps={{style: {background: 'white'}}} onChange={(e) => setNoteText(e.target.value)}  />
 			</form>
 		</div>
 	)
