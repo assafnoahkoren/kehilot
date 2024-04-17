@@ -1,0 +1,15 @@
+.cluster-icon {
+    background-color: #e53356;
+    color: white;
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 100%;
+}
