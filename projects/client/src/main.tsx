@@ -18,6 +18,8 @@ import 'swiper/css/pagination';
 import 'large-small-dynamic-viewport-units-polyfill';
 
 import 'leaflet/dist/leaflet.css';
+import 'leaflet.markercluster/dist/leaflet.markercluster.js'
+import 'leaflet.markercluster/dist/MarkerCluster.css'
 
 
 const originalFetch = window.fetch;
