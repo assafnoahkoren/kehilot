@@ -20,7 +20,8 @@
 
 :root {
 	--primary-color: #6E8EE0;
-	--secondary-color: #000;
+	--secondary-color: #2D4173;
+	--accent-color: #E1F4FF;
 }
 
 *:not(i) {

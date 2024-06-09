@@ -8,6 +8,11 @@ export const muiTheme = (dir?: Direction ) => createTheme({
 				.getPropertyValue('--primary-color')
 				.trim() || '#1EA7FD',
 		},
+		secondary: {
+			main: getComputedStyle(document.documentElement)
+				.getPropertyValue('--secondary-color')
+				.trim() || '#2D4173',
+		}
 	},
 
 	direction: dir,
