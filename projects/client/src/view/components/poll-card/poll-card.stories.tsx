@@ -24,7 +24,7 @@ export const Default: Story = {
       לצפייה
       <i className="fas fa-chevron-right ms-2"></i>
     </Button>,
-    icon: <i className="fas fa-location-pin text-3xl p-3 text-primary"></i>
+    icon: <i className="fas fa-location-pin text-3xl p-4 px-5 text-primary"></i>
   },
   argTypes: {
 
@@ -43,7 +43,7 @@ export const WithTags: Story = {
       לצפייה
       <i className="fas fa-chevron-right ms-2"></i>
     </Button>,
-    icon: <i className="fas fa-user text-2xl p-4 px-8 text-primary"></i>
+    icon: <i className="fas fa-user text-2xl p-4 px-5 text-primary"></i>
   },
   argTypes: {
 
