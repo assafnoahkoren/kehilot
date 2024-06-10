@@ -2,7 +2,7 @@ import { Chip, ChipProps } from "@mui/material";
 import { FC } from "react";
 
 
-interface TagProps extends ChipProps {
+export interface TagProps extends ChipProps {
 	type: 'default' | 'solid' | 'danger' | 'warning' | 'info' | 'light' | 'chip';
 
 }
@@ -14,7 +14,7 @@ export const Tag: FC<TagProps> = props => {
 		<div>
 			<Chip {...props} sx={{
 				...typeMap[type],
-				paddingY: 0.5,
+				paddingY: 0.2,
 				minHeight: 0,
 				height: 'auto',
 			}}/>
