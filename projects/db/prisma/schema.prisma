@@ -6,12 +6,12 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlserver"
+  provider = "postgresql"
   url      = env("DB_URL")
 }
 
 model User {
-  id          String  @id @default(uuid())
+  id          String  @id @default(cuid())
   email       String  @unique
   picture_url String?
   first_name  String?
@@ -28,7 +28,7 @@ model User {
 }
 
 model AuthChallenge {
-  id         String   @id @default(uuid())
+  id         String   @id @default(cuid())
   user_id    String
   user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
   code       String
@@ -39,7 +39,7 @@ model AuthChallenge {
 }
 
 model Subject {
-  id            String    @id @default(uuid())
+  id            String    @id @default(cuid())
   gov_id        String?
   phone         String?
   first_name    String?
@@ -62,7 +62,7 @@ model Subject {
 }
 
 model Group {
-  id String @id @default(uuid())
+  id String @id @default(cuid())
 
   name      String // Group name for example: "Dafna"
   sql_where String? // SQL where clause to filter the group members
@@ -74,7 +74,7 @@ model Group {
 }
 
 model GroupUserRole {
-  id String @id @default(uuid())
+  id String @id @default(cuid())
 
   group_id String // Group that the user has a role in
   group    Group  @relation(fields: [group_id], references: [id], onDelete: Cascade)
@@ -89,7 +89,7 @@ model GroupUserRole {
 }
 
 model Note {
-  id          String  @id @default(uuid())
+  id          String  @id @default(cuid())
   user_id     String // User who created the note
   user        User    @relation(fields: [user_id], references: [id], onDelete: Cascade)
   entity_id   String
@@ -101,7 +101,7 @@ model Note {
 }
 
 model Issue {
-  id         String  @id @default(uuid())
+  id         String  @id @default(cuid())
   subject_id String // Subject who the issue is about
   subject    Subject @relation(fields: [subject_id], references: [id], onDelete: Cascade)
   title      String?
