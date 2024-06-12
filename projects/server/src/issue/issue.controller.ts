@@ -17,10 +17,10 @@ export class IssueController {
 			}
 		}
 		const where_clasue = groups.map(group => `(${group.sql_where})`).join(' OR ');
-		const result = await db.$queryRawUnsafe(`SELECT COUNT (*) FROM issue WHERE ${where_clasue}`);
-		return {
-			count: result[0][""]
-		}
+		const result = await db.$queryRawUnsafe(`SELECT COUNT (*) FROM "Issue" WHERE ${where_clasue}`);
+		console.log(result);
+		
+		return result[0]
 	}
 
 	@Get('mine')
@@ -29,7 +29,7 @@ export class IssueController {
 		const userId = req.user.userId;
 		const groups = await getUserOwnedGroups(userId);
 		const where_clasue = groups.map(group => `(${group.sql_where})`).join(' OR ');
-		const issues = await db.$queryRawUnsafe<{id: string}[]>(`SELECT id FROM issue WHERE ${where_clasue}`);
+		const issues = await db.$queryRawUnsafe<{id: string}[]>(`SELECT id FROM "Issue" WHERE ${where_clasue}`);
 		return db.issue.findMany({
 			where: {
 				id: {

@@ -15,7 +15,7 @@ export class GroupController {
 		const group = await db.group.findUnique({where: {id: id}});
 		if (containsDeletionKeywords(group.sql_where)) throw new HttpException('Bad request', 400);
 
-		const subjects = await db.$queryRawUnsafe(`SELECT * FROM subject WHERE ${group.sql_where}`);
+		const subjects = await db.$queryRawUnsafe(`SELECT * FROM "Subject" WHERE ${group.sql_where}`);
 		return subjects;
 	}
 
@@ -27,10 +27,8 @@ export class GroupController {
 		const group = await db.group.findUnique({where: {id: id}});
 		if (containsDeletionKeywords(group.sql_where)) throw new HttpException('Bad request', 400);
 		
-		const result = await db.$queryRawUnsafe(`SELECT COUNT (*) FROM subject WHERE ${group.sql_where}`);
-		return {
-			count: result[0][""]
-		};
+		const result = await db.$queryRawUnsafe(`SELECT COUNT (*) FROM "Subject" WHERE ${group.sql_where}`);
+		return result[0]
 	}
 
 	@Get('mine')
