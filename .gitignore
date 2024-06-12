@@ -4,3 +4,4 @@ node_modules
 safelist.txt
 .eslintcache
 k8s/*.tmp.yaml
+volumes
