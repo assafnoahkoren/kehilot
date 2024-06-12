@@ -1,1 +1,8 @@
-[]
+- "!include public_AuthChallenge.yaml"
+- "!include public_Group.yaml"
+- "!include public_GroupUserRole.yaml"
+- "!include public_Issue.yaml"
+- "!include public_Note.yaml"
+- "!include public_Subject.yaml"
+- "!include public_User.yaml"
+- "!include public__prisma_migrations.yaml"

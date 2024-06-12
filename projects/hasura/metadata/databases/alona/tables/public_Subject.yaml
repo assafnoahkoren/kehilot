@@ -1,0 +1,11 @@
+table:
+  name: Subject
+  schema: public
+array_relationships:
+  - name: Issues
+    using:
+      foreign_key_constraint_on:
+        column: subject_id
+        table:
+          name: Issue
+          schema: public

@@ -1,0 +1,7 @@
+table:
+  name: Issue
+  schema: public
+object_relationships:
+  - name: Subject
+    using:
+      foreign_key_constraint_on: subject_id

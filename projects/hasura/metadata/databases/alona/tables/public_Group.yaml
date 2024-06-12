@@ -1,0 +1,11 @@
+table:
+  name: Group
+  schema: public
+array_relationships:
+  - name: GroupUserRoles
+    using:
+      foreign_key_constraint_on:
+        column: group_id
+        table:
+          name: GroupUserRole
+          schema: public

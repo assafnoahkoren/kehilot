@@ -1,0 +1,25 @@
+table:
+  name: User
+  schema: public
+array_relationships:
+  - name: AuthChallenges
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: AuthChallenge
+          schema: public
+  - name: GroupUserRoles
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: GroupUserRole
+          schema: public
+  - name: Notes
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: Note
+          schema: public
