@@ -9,6 +9,10 @@ import { IssuesPage } from '../../view/pages/issues/IssuesPage';
 import { MapPage } from '../../view/pages/map/MapPage';
 import { IssueDetailsPage } from '../../view/pages/issues/IssueDetailsPage';
 import { SubjectDetailsPage } from '../../view/pages/subject/SubjectDetailsPage';
+import { SettingsPage } from '../../view/pages/settings-page/SettingsPage';
+import { PollsPage } from '../../view/pages/polls-page/PollsPage';
+import { PollDetailsPage } from '../../view/pages/polls-page/PollDetailsPage';
+import { LocationPollDetails } from '../../view/pages/polls-page/LocationPollDetails';
 
 const authGuard = async () => {
 	const isAuthenticated = checkAuth();
@@ -39,6 +43,10 @@ export const ProtectedRoutes: RouteObject = {
 		{ path: 'issues/details/:id', element: <IssueDetailsPage /> },
 		{ path: 'subjects/details/:id', element: <SubjectDetailsPage /> },
 		{ path: 'personal', element: <PersonalAreaPage /> },
+		{ path: 'settings', element: <SettingsPage /> },
+		{ path: 'polls', element: <PollsPage /> },
+		{ path: 'poll-details', element: <PollDetailsPage />},
+		{ path: 'location-poll-details', element: <LocationPollDetails />},
 		{ path: 'map', element: <MapPage />}
 	]
 };

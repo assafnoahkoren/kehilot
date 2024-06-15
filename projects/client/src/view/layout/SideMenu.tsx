@@ -45,7 +45,7 @@ export const SideMenu: FC = React.memo(() => {
 						<i className='fal fa-times'></i>
 					</div>
 					<span className='font-bold text-white'>
-					kehilot
+					תפריט
 					</span>
 					<div className='w-[48px]'></div>
 				</ListItem>
@@ -57,16 +57,16 @@ export const SideMenu: FC = React.memo(() => {
 								<ListItemText primary="בית" />
 							</ListItemButton>
 						</ListItem>
-						<ListItem className={isActive('/s/elevators')}>
-							<ListItemButton onClick={goto('/s/elevators')}>
-								<i className='fa-solid w-5 fa-elevator me-2 text-primary-color opacity-75'></i>
-								<ListItemText primary="מעליות" />
+						<ListItem className={isActive('/s/personal')}>
+							<ListItemButton onClick={goto('/s/personal')}>
+								<i className='fa-solid w-5 fa-user-circle me-2 text-primary-color opacity-75'></i>
+								<ListItemText primary="איזור אישי" />
 							</ListItemButton>
 						</ListItem>
-						<ListItem className={isActive('/s/types')}>
-							<ListItemButton  onClick={goto('/s/elevators')}>
-								<i className='fa-solid w-5 fa-grid me-2 text-primary-color opacity-75'></i>
-								<ListItemText primary="סוגים"/>
+						<ListItem className={isActive('/s/settings')}>
+							<ListItemButton  onClick={goto('/s/settings')}>
+								<i className='fa-solid w-5 fa-cog me-2 text-primary-color opacity-75'></i>
+								<ListItemText primary="הגדרות"/>
 							</ListItemButton>
 						</ListItem>
 					</List>

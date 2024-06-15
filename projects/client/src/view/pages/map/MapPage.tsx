@@ -8,13 +8,15 @@ import { useAddressesToGeoLocations } from "../../../core/api/hooks/geo";
 import { Chip, Tab, Tabs } from '@mui/material';
 
 import './MapPage.css';
+import { NavButtonGroup } from '../../components/button-group/nav-button-group';
+import { useNavigate } from 'react-router-dom';
 
 
 
 export const MapPage: FC = () => {
 	const [layoutState, setLayoutState] = useRecoilState(atom_layoutState);
 	const [map, setMap] = useState<ReturnType<typeof useMap> | null>(null);
-
+	const navigate = useNavigate();
 
 	useLayoutEffect(() => {
 		setLayoutState({topBarVisible: true, title: 'מיקום תושבים', topBarColor: '#F6D1D1', backgroundColor: '#f9f9f9'})
@@ -56,10 +58,23 @@ export const MapPage: FC = () => {
 
 	return (
 		<div className="h-full">
-			<Tabs variant="fullWidth" onChange={setValue} value={value}  className="bg-white rounded-xl fixed top-12 start-0 z-[99999] w-[50%] mx-[25%] shadow-sm">
-				<Tab className="text-lg font-normal" disabled label="רשימה" value="1" />
-				<Tab className="text-lg font-normal" label="מפה" value="2" />
-			</Tabs>
+			<div className="flex justify-center w-full fixed top-14 z-[999]">
+				<NavButtonGroup activeId="map" buttons={[{
+					id: 'map',
+					label: <>
+					מפה
+						<i className="fas fa-map-location ms-2"></i>
+					</>
+				}, {
+					id: 'list',
+					onClick: () => navigate('/s/poll-details'),
+					label: <>
+					רשימה
+						<i className="fas fa-list ms-2"></i>
+					</>
+				}]}/>
+
+			</div>
 			<MapContainer ref={setMap} center={[31.788170, 34.629790]} zoom={8} style={{width: '100%', height: '100%'}} >
 				<TileLayer
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

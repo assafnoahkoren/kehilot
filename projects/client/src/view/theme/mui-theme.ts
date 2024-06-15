@@ -59,11 +59,12 @@ export const muiTheme = (dir?: Direction ) => createTheme({
 			styleOverrides: {
 				root: {
 					'& .MuiSelect-select': {
-						padding: '4px 14px',
+						padding: '14px 14px',
 						height: '35px'
 					},
 					'& fieldset': {
-						borderColor: 'transparent'
+						borderColor: 'inherit'
+
 					}
 				}
 			}

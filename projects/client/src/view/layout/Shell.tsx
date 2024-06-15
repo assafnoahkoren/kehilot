@@ -58,17 +58,17 @@ const BottomNav: FC = () => {
 	}, [value]);
 
 	return (
-		<BottomNavigation className='font-black shadow-inner min-h-16'
+		<BottomNavigation className='font-black  shadow-inner min-h-16'
 			showLabels
 			value={value}
 			onChange={(event, newValue) => {
 				setValue(newValue);
 			}}
 		>
-			<BottomNavigationAction value="/s/home" label="בית" icon={<i className="fas fa-home text-xl h-6"></i>} />
-			<BottomNavigationAction value="/s/map" label="מיקום" icon={<i className="fas fa-map-marker-alt text-xl h-6"></i>} />
-			<BottomNavigationAction value="/s/issues" label="פניות" icon={<span className='-scale-x-100 flex'><i className="fas fa-comment-question text-xl h-6"></i></span>} />
-			<BottomNavigationAction value="/s/personal" label="אזור אישי" icon={<i className="fas fa-circle-user text-xl h-6"></i>} />
+			<BottomNavigationAction className='opacity-70' value="/s/polls" label="סקרים" icon={<i className="fas fa-home text-xl h-6"></i>} />
+			<BottomNavigationAction className='opacity-70' value="/s/map" label="מיקומים" icon={<i className="fas fa-map-marker-alt text-xl h-6"></i>} />
+			<BottomNavigationAction className='opacity-70' value="/s/issues" label="פניות" icon={<span className='-scale-x-100 flex'><i className="fas fa-comment-question text-xl h-6"></i></span>} />
+			<BottomNavigationAction className='opacity-70' value="/s/personal" label="תובנות" icon={<i className="fas fa-lightbulb text-xl h-6"></i>} />
 		</BottomNavigation>
 	)
 }

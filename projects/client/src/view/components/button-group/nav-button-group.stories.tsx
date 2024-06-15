@@ -16,7 +16,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
 	args: {
-		buttons: ['תוצאות סקר', 'נתונים כלליים']
+		buttons: ['תוצאות סקר', 'נתונים כלליים'].map(label => ({label}))
+		
 	},
 	argTypes: {
 
@@ -25,7 +26,7 @@ export const Default: Story = {
 
 export const ThreeItems: Story = {
 	args: {
-		buttons: ['פניות מתועדפות', 'פניות חדשות', 'כל הפניות']
+		buttons: ['פניות מתועדפות', 'פניות חדשות', 'כל הפניות'].map(label => ({label}))
 	},
 	argTypes: {
 
@@ -50,7 +51,7 @@ export const WithBreak: Story = {
 				<span style={{lineHeight: '1em'}}>נתונים</span>
 				<span style={{lineHeight: '1em'}}>כלליים</span>
 			</div>,
-		]
+		].map((label, index) => ({label, id: String(index)}))
 	},
 	argTypes: {
 

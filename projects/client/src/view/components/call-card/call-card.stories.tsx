@@ -138,6 +138,44 @@ export const UrgantNoPerson: Story = {
 	},
 };
 
+export const WithIcon: Story = {
+	args: {
+		date: new Date(),
+		preTitle: undefined,
+		title: 'מיקום תושבים והצפת פערים',
+		icon: <div className='flex flex-col items-center py-4 px-5 pe-2 text-green-700'>
+			<div className='text-2xl font-black leading-none'>90%</div>
+			<div className='font-bold'>ענו</div>
+		</div>,
+		subtitle: undefined,
+		upperTags: [{
+			label: <div>
+				<i className="fas fa-repeat me-1"></i>
+				חוזר
+			</div>
+		}],
+		lowerTags: [{
+			type: 'chip',
+			label: 'מיקום'
+		}, {
+			type: 'chip',
+			label: 'פערים'
+		}],
+		personName: undefined,
+		personePhone: undefined,
+		contactName: undefined,
+		upperButton: <Button variant="text" className='min-w-0 p-0 text-lg'>
+			<i className="fas fa-ellipsis-vertical"></i>
+		</Button>,
+		lowerButton: <Button variant="text">
+		לתוצאות
+			<i className="fas fa-chevron-right ms-2"></i>
+		</Button>,	},
+	argTypes: {
+
+	},
+};
+
 export const CustomTag: Story = {
 	args: {
 		date: new Date(),

@@ -23,7 +23,7 @@ export type LocationChangeCardProps = {
 
 export const LocationChangeCard = (props: LocationChangeCardProps) => {
 	return (
-		<div className="shadow p-4 rounded-lg flex flex-col w-full">
+		<div className="shadow p-4 rounded-lg flex flex-col w-full bg-white">
 			<div className="font-bold text-lg">{props.amount} תושבים</div>
 			<div className="flex gap-6 items-center">
 				<LocationSection {...props.location1} />

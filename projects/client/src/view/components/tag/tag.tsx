@@ -3,7 +3,7 @@ import { FC } from "react";
 
 
 export interface TagProps extends ChipProps {
-	type: 'default' | 'solid' | 'danger' | 'warning' | 'info' | 'light' | 'chip';
+	type?: 'default' | 'solid' | 'danger' | 'warning' | 'info' | 'light' | 'chip';
 
 }
 

@@ -2,18 +2,16 @@ import { FC, useEffect, useLayoutEffect, useMemo, useState } from "react"
 import { useRecoilState } from "recoil";
 import { atom_layoutState } from "../../layout/layout-state";
 import { SearchBar } from "../../components/search-bar/search-bar";
-import { Chip, Grow, Link, Tab, Tabs } from "@mui/material";
+import { ButtonGroup, Chip, Grow, Link, Tab, Tabs } from "@mui/material";
 import { useMyIssues } from "../../../core/api/hooks/issues";
 import { useNavigate } from "react-router-dom";
 import { Tag } from '../../components/tag/tag.tsx';
+import { NavButtonGroup } from "../../components/button-group/nav-button-group.tsx";
 
 export const IssuesPage: FC = () => {
 	const [layoutState, setLayoutState] = useRecoilState(atom_layoutState);
 	const navigate = useNavigate();
-	const [value, setValue] = useState('2');
-	const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-		setValue(newValue);
-	};
+
 	
 	const query_MyIssues = useMyIssues();
 
@@ -22,12 +20,10 @@ export const IssuesPage: FC = () => {
 	}, []);
 
 	return (
-		<div className="p-4 pt-16">
-			<Tabs variant="fullWidth" onChange={handleChange} value={value}  className="bg-white rounded-xl fixed top-12 start-0 z-40 w-[80%] mx-[10%] shadow-sm">
-				<Tab className="text-lg font-normal" disabled label="סקרים" value="1" />
-				<Tab className="text-lg font-normal" label="פניות" value="2" />
-				<Tab className="text-lg font-normal" disabled label="תובנות" value="3" />
-			</Tabs>
+		<div className="p-4 pt-10">
+			<div className="flex justify-center w-full fixed top-10 -top-4 z-[40]">
+				<NavButtonGroup buttons={[{label: 'סקרים'}, {label: 'פניות'}, {label: 'תובנות',}]}/>
+			</div>
 			<div className="bg-white w-full rounded-full mb-4">
 				<SearchBar placeholder="חיפוש" />
 			</div>
